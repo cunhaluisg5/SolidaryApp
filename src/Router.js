@@ -16,7 +16,6 @@ const AppNavigator = createStackNavigator(
     'Enter': {
         screen: Enter,
         navigationOptions: {
-          title: "Login"
         }
       },
     'EnterMail': {

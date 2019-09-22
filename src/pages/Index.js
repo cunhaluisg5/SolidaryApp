@@ -37,11 +37,14 @@ class Index extends React.Component {
                     <Image style={styles.image} source={require('../images/logo.png')} />
                 </View>
                 <Text style={styles.text}>Acesse ou cadastre-se</Text>
-                <View style={styles.buttonEnter}>
-                    {this.renderButtonEnter()}
-                </View>
-                <View style={styles.buttonRegister}>
-                    {this.renderButtonRegister()}
+
+                <View style={styles.containerButton}>
+                    <View style={styles.button}>
+                        {this.renderButtonEnter()}
+                    </View>
+                    <View style={styles.button}>
+                        {this.renderButtonRegister()}
+                    </View>
                 </View>
             </View >
         );
@@ -64,18 +67,14 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlignVertical: "top",
     },
-    buttonEnter: {
+    button: {
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 10,
         fontSize: 50,
         marginBottom: 10,
     },
-    buttonRegister: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 10,
-        fontSize: 50,
+    containerButton: {
         marginBottom: 40
     },
     container: {

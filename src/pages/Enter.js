@@ -1,54 +1,96 @@
 import React from 'react';
-import { StyleSheet, TextInput, Button, View, Text, ActivityIndicator, Alert } from 'react-native';
+import { StyleSheet, Button, View, Text, Image } from 'react-native';
 
 class Enter extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    renderButton() {
+    renderButtonGoogle() {
         return <Button
-            title="Entrar"
-            onPress={() => this.tryLogin()} />
+            title="Google"
+            color="#008000"
+            onPress={() => this.tryGoogle()} />
     }
 
-    tryLogin() {
+    renderButtonFacebook() {
+        return <Button
+            title="Facebook"
+            color="#4169E1"
+            onPress={() => this.tryFacebook()} />
+    }
+
+    renderButtonMail() {
+        return <Button
+            title="E-mail"
+            color="#FF8C00"
+            onPress={() => this.tryMail()} />
+    }
+
+    tryGoogle() {
+    }
+
+    tryFacebook() {
+    }
+
+    tryMail() {
         const { navigation } = this.props
         navigation.navigate("EnterMail")
     }
 
     render() {
         return (
-            <View>
-                <Text>Enter</Text>
-                <View style={styles.button}>
-                    {this.renderButton()}
+            <View style={styles.container}>
+                <View style={styles.containerImage}>
+                    <Image style={styles.image} source={require('../images/logo.png')} />
                 </View>
-            </View>
+                <Text style={styles.text}>Acesse com</Text>
+                <View style={styles.containerButton}>
+                    <View style={styles.button}>
+                        {this.renderButtonGoogle()}
+                    </View>
+                    <View style={styles.button}>
+                        {this.renderButtonFacebook()}
+                    </View>
+                    <View style={styles.button}>
+                        {this.renderButtonMail()}
+                    </View>
+                </View>
+            </View >
         );
     }
 }
 
 const styles = StyleSheet.create({
-    button: {
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingTop: 10,
-        fontSize: 20,
+    image: {
+        width: 100,
+        height: 100
     },
-    textInput: {
-        borderColor: 'black',
-        borderBottomWidth: 1,
-        fontSize: 30,
-        paddingBottom: 10,
-        paddingRight: 5,
-        paddingLeft: 5,
-        textAlign: 'center'
+    containerImage: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 40
+    },
+    text: {
+        flex: 1,
+        textAlign: "center",
+        fontSize: 20,
+        textAlignVertical: "top",
+    },
+    button: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 10,
+        fontSize: 50,
+        marginBottom: 10,
+    },
+    containerButton: {
+        marginBottom: 200
     },
     container: {
-        marginTop: 40,
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#DCDCDC',
     },
 });
 
