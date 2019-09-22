@@ -1,41 +1,28 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, TextInput, Button, View, Text, ActivityIndicator, Alert } from 'react-native';
 
 class Enter extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    renderButtonGoogle() {
+    renderButton() {
         return <Button
-            title="Google"
-            color="#FFFFFF"/>
+            title="Entrar"
+            onPress={() => this.tryLogin()} />
     }
 
-    renderButtonFacebook() {
-        return <Button
-            title="Facebook"
-            color="#0000FF"/>
-    }
-
-    renderButtonEmail() {
-        return <Button
-            title="Email"
-            color="#FF8C00"/>
+    tryLogin() {
+        const { navigation } = this.props
+        navigation.navigate("EnterMail")
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.text}>Acesse com</Text>
+            <View>
+                <Text>Enter</Text>
                 <View style={styles.button}>
-                    {this.renderButtonGoogle()}
-                </View>
-                <View style={styles.button}>
-                    {this.renderButtonFacebook()}
-                </View>
-                <View style={styles.button}>
-                    {this.renderButtonEmail()}
+                    {this.renderButton()}
                 </View>
             </View>
         );
@@ -43,18 +30,11 @@ class Enter extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    text: {
-        textAlign: "center",
-        fontSize: 20,
-        textAlignVertical: "center",
-        marginTop: 40,
-        marginBottom: 20
-    },
     button: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 20,
-        fontSize: 50,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 10,
+        fontSize: 20,
     },
     textInput: {
         borderColor: 'black',
@@ -66,8 +46,10 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     container: {
+        marginTop: 40,
         flex: 1,
-        backgroundColor: '#DCDCDC',
+        backgroundColor: '#fff',
     },
 });
+
 export default Enter;

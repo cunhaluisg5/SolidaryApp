@@ -1,40 +1,44 @@
-import Login from './pages/Login';
+import Index from './pages/Index';
+import EnterMail from './pages/EnterMail';
 import Enter from './pages/Enter';
-import Register from './pages/Register'
+import ContentPage from './pages/ContentPage';
 
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator} from 'react-navigation-stack';
+import { createStackNavigator } from 'react-navigation-stack';
 
 const AppNavigator = createStackNavigator(
   {
-    'Login' : {
-      screen: Login,
-    },
-    'Enter' : {
-      screen: Enter,
-      navigationOptions: {
-        title: "Efetuar Login"
-      }
-    },
-    'Register' : {
-        screen: Register,
+    'Index': {
+        screen: Index,
         navigationOptions: {
-          title: "Cadastro"
         }
+      },
+    'Enter': {
+        screen: Enter,
+        navigationOptions: {
+          title: "Login"
+        }
+      },
+    'EnterMail': {
+      screen: EnterMail,
+      navigationOptions: {
+        title: "Login"
       }
+    },
+    'Content': {
+      screen: ContentPage,
+      navigationOptions: {
+        title: "Conteúdo"
+      }
+    }
   }, {
     defaultNavigationOptions: {
-      title: "",
       headerStyle: {
-        backgroundColor:"#06f"
+        backgroundColor: "#0000FF"
       },
-      headerTitleStyle: {
-        color: 'white',
-        fontSize: 30,
-      }
     }
   }
 );
 
-const Router = createAppContainer(AppNavigator); 
+const Router = createAppContainer(AppNavigator);
 export default Router;
