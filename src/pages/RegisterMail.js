@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TextInput, Button, View, Text, ActivityIndicator } from 'react-native';
-import firebase from 'firebase';
 
 class RegisterMail extends React.Component {
     constructor(props) {
@@ -11,19 +10,6 @@ class RegisterMail extends React.Component {
             message: '',
             isLoading: false
         }
-    }
-
-    componentDidMount() {
-        const firebaseConfig = {
-            apiKey: "AIzaSyASYCAcpMSBEUt_5CKg0qRj2llH5LRaiuk",
-            authDomain: "cadastro-6cf90.firebaseapp.com",
-            databaseURL: "https://cadastro-6cf90.firebaseio.com",
-            projectId: "cadastro-6cf90",
-            storageBucket: "",
-            messagingSenderId: "542064520936",
-            appId: "1:542064520936:web:5513be07877e31bd51a35d"
-        };
-        firebase.initializeApp(firebaseConfig);
     }
 
     onChangeMail(value) {
@@ -57,6 +43,10 @@ class RegisterMail extends React.Component {
     }
 
     tryLogin() {
+        this.setState({ isLoading: true })
+        const { mail, pass } = this.state
+        const { navigation } = this.props
+        navigation.navigate("Index")
     }
 
     render() {
@@ -97,7 +87,7 @@ const styles = StyleSheet.create({
     text: {
         marginLeft: 10,
         fontSize: 20,
-        
+
     },
     textInput: {
         borderColor: 'black',

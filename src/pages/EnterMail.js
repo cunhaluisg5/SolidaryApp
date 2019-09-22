@@ -61,8 +61,9 @@ class EnterMail extends React.Component {
     this.setState({ isLoading: true })
     const { mail, pass } = this.state
     const { navigation } = this.props
+    navigation.navigate("Main")
     //Promisse
-    firebase.auth().signInWithEmailAndPassword(mail, pass)
+    /*firebase.auth().signInWithEmailAndPassword(mail, pass)
       .then(user => {
         //console.log('Usuário autenticado com sucesso', user)
         this.setState({ message: 'Sucesso' })
@@ -92,7 +93,7 @@ class EnterMail extends React.Component {
             }])
         }
       })
-      .finally(() => this.setState({ isLoading: false }))
+      .finally(() => this.setState({ isLoading: false }))*/
   }
 
   render() {
