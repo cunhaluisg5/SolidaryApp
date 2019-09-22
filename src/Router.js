@@ -1,7 +1,7 @@
 import Index from './pages/Index';
 import EnterMail from './pages/EnterMail';
 import Enter from './pages/Enter';
-import ContentPage from './pages/ContentPage';
+import Main from './pages/Main';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -21,15 +21,13 @@ const AppNavigator = createStackNavigator(
     'EnterMail': {
       screen: EnterMail,
       navigationOptions: {
-        title: "Login"
       }
     },
-    'Content': {
-      screen: ContentPage,
-      navigationOptions: {
-        title: "Conteúdo"
-      }
-    }
+    'Main': {
+        screen: Main,
+        navigationOptions: {
+        }
+      },
   }, {
     defaultNavigationOptions: {
       headerStyle: {

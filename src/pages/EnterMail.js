@@ -7,7 +7,7 @@ class EnterMail extends React.Component {
     super(props);
     this.state = {
       mail: '',
-      pass: '', 
+      pass: '',
       message: '',
       isLoading: false
     }
@@ -47,17 +47,18 @@ class EnterMail extends React.Component {
   }
 
   renderButton() {
-    if(this.state.isLoading)
-      return <ActivityIndicator/>
+    if (this.state.isLoading)
+      return <ActivityIndicator />
 
-    return  <Button
-            title="Entrar"
-            onPress={() => this.tryLogin()} />
+    return <Button
+      title="Entrar"
+      color="#FF8C00"
+      onPress={() => this.tryLogin()} />
   }
 
   tryLogin() {
     //console.log(this.state);
-    this.setState( { isLoading: true } )
+    this.setState({ isLoading: true })
     const { mail, pass } = this.state
     const { navigation } = this.props
     //Promisse
@@ -65,47 +66,53 @@ class EnterMail extends React.Component {
       .then(user => {
         //console.log('Usuário autenticado com sucesso', user)
         this.setState({ message: 'Sucesso' })
-        navigation.navigate("Content")
+        navigation.navigate("Main")
       })
       .catch(error => {
-        console.log('Deu ruim', error)
+        console.log('Erro', error)
         this.setState({ message: error.code })
-        if(error.code === 'auth/user-not-found') {
-          Alert.alert('Não cadastrado', 
-          'Deseja cadastrar um novo usuário ?', 
-          [{
-            text: 'Sim',
-            onPress: () => {
-              firebase.auth().createUserWithEmailAndPassword(mail, pass)
-              .then(user => {
-                this.setState({ message: 'Sucesso' })
-              })
-              .catch(error => {
-                this.setState({ message: error.code })
-              })
-            }
-          },
-          {
-            text: 'Não',
-            onPress: () => {console.log('Usuário não quer criar conta')}
-          }])
+        if (error.code === 'auth/user-not-found') {
+          Alert.alert('Não cadastrado',
+            'Deseja cadastrar um novo usuário ?',
+            [{
+              text: 'Sim',
+              onPress: () => {
+                firebase.auth().createUserWithEmailAndPassword(mail, pass)
+                  .then(user => {
+                    this.setState({ message: 'Sucesso' })
+                  })
+                  .catch(error => {
+                    this.setState({ message: error.code })
+                  })
+              }
+            },
+            {
+              text: 'Não',
+              onPress: () => { console.log('Usuário não quer criar conta') }
+            }])
         }
       })
-      .finally(() => this.setState({ isLoading: false })) 
+      .finally(() => this.setState({ isLoading: false }))
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="user@email.com"
-          onChangeText={(value) => this.onChangeMail(value)} />
-        <TextInput
-          style={styles.textInput}
-          placeholder="********"
-          secureTextEntry
-          onChangeText={(value) => this.onChangePass(value)} />
+        <View style={styles.containerText}>
+          <Text style={styles.text}>Digite o e-mail e a senha</Text>
+          <Text style={styles.text}>para continuar</Text>
+        </View>
+        <View style={styles.containerTextInput}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="user@email.com"
+            onChangeText={(value) => this.onChangeMail(value)} />
+          <TextInput
+            style={styles.textInput}
+            placeholder="********"
+            secureTextEntry
+            onChangeText={(value) => this.onChangePass(value)} />
+        </View>
         <View style={styles.button}>
           {this.renderButton()}
         </View>
@@ -117,10 +124,11 @@ class EnterMail extends React.Component {
 
 const styles = StyleSheet.create({
   button: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
     fontSize: 20,
+    marginBottom: 20
   },
   textInput: {
     borderColor: 'black',
@@ -129,12 +137,23 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingRight: 5,
     paddingLeft: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 20
+  },
+  containerText: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  containerTextInput: {
+    flex: 3,
+    marginTop: 100
   },
   container: {
-    marginTop: 40,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#DCDCDC',
   },
 });
 
