@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, TextInput, Button, View, Text } from 'react-native';
+import { StyleSheet, TextInput, View, Text } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Register extends React.Component {
     constructor(props) {
@@ -9,8 +11,16 @@ class Register extends React.Component {
 
     renderButton() {
         return <Button
+            icon={
+                <Icon
+                    name="user"
+                    size={15}
+                    color="black"
+                />
+            }
             title="Cadastrar"
-            color="#FF8C00"
+            titleStyle={{ color: 'black', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#FF8C00' }}
             onPress={() => this.tryRegister()} />
     }
 
@@ -47,17 +57,17 @@ class Register extends React.Component {
                 <View style={styles.containerTextInput}>
                     <Text style={styles.text}>Nome: </Text>
                     <TextInput
-                        style={styles.textInput}/>
+                        style={styles.textInput} />
                     <Text style={styles.text}>Telefone: </Text>
                     <TextInput
-                        style={styles.textInput}/>
-                        <Text style={styles.text}>E-mail: </Text>
+                        style={styles.textInput} />
+                    <Text style={styles.text}>E-mail: </Text>
                     <TextInput
-                        style={styles.textInput}/>
-                        <Text style={styles.text}>Senha: </Text>
+                        style={styles.textInput} />
+                    <Text style={styles.text}>Senha: </Text>
                     <TextInput
                         style={styles.textInput}
-                        secureTextEntry/>
+                        secureTextEntry />
                 </View>
 
                 <View style={styles.button}>

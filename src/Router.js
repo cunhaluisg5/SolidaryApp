@@ -11,13 +11,17 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 const AppTabNavigator = createBottomTabNavigator(
   {
-    'Informações': {
+    'Notificações': {
       screen: Info,
     },
-    'Doe': {
+    'Doação': {
       screen: Donate,
     },
   },
+  {
+    defaultNavigationOptions: {
+    }
+  }
 );
 
 const AppNavigator = createStackNavigator(
@@ -37,9 +41,7 @@ const AppNavigator = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#0000FF"
-      },
+      header: null,
     }
   }
 );

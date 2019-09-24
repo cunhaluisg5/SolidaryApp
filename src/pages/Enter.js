@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, TextInput, Button, View, Text, ActivityIndicator, Alert } from 'react-native';
+import { StyleSheet, TextInput, View, Text, ActivityIndicator, Alert } from 'react-native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Enter extends React.Component {
   constructor(props) {
@@ -32,8 +34,16 @@ class Enter extends React.Component {
 
   renderButton() {
     return <Button
+      icon={
+        <Icon
+          name="check"
+          size={15}
+          color="black"
+        />
+      }
       title="Entrar"
-      color="#FF8C00"
+      titleStyle={{ color: 'black', marginLeft: 10, fontSize: 20 }}
+      buttonStyle={{ backgroundColor: '#4169E1' }}
       onPress={() => this.tryLogin()} />
   }
 
@@ -76,7 +86,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 20,
-    fontSize: 20,
     marginBottom: 20
   },
   textInput: {
@@ -94,7 +103,8 @@ const styles = StyleSheet.create({
   containerText: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 20
   },
   containerTextInput: {
     flex: 3,

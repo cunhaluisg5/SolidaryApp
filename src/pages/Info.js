@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, TextInput, Button, View, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { Header } from 'react-native-elements';
 
 class Info extends React.Component {
     constructor(props) {
@@ -9,6 +10,11 @@ class Info extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Header
+                    leftComponent={{ icon: 'menu', color: '#fff' }}
+                    centerComponent={{ text: 'Notificações', style: { color: '#fff', fontSize: 20 } }}
+                    rightComponent={{ icon: 'home', color: '#fff' }}
+                />
                 <View style={styles.containerText}>
                     <Text style={styles.text}>Informações!</Text>
                 </View>

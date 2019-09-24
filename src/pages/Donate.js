@@ -1,16 +1,54 @@
 import React from 'react';
-import { StyleSheet, TextInput, Button, View, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { Button, Header } from 'react-native-elements';
 
 class Donate extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    renderButton1() {
+        return <Button
+            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#A52A2A' }}
+            title="Sangue" />
+    }
+
+    renderButton2() {
+        return <Button
+            titleStyle={{ color: 'ffffff', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#00008B' }}
+            title="Agasalho" />
+    }
+
+    renderButton3() {
+        return <Button
+            titleStyle={{ color: 'ffffff', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#2E8B57' }}
+            title="Dinheiro" />
+    }
+
     render() {
         return (
             <View style={styles.container}>
+                <Header
+                    leftComponent={{ icon: 'menu', color: '#fff' }}
+                    centerComponent={{ text: 'Doação', style: { color: '#fff', fontSize: 20 } }}
+                    rightComponent={{ icon: 'home', color: '#fff' }}
+                />
                 <View style={styles.containerText}>
-                    <Text style={styles.text}>Doe!</Text>
+                    <Text style={styles.text}>Escolha uma das opções abaixo:</Text>
+                </View>
+                <View style={styles.containerButton}>
+                    <View style={styles.button}>
+                        {this.renderButton1()}
+                    </View>
+                    <View style={styles.button}>
+                        {this.renderButton2()}
+                    </View>
+                    <View style={styles.button}>
+                        {this.renderButton3()}
+                    </View>
                 </View>
             </View>
         );
@@ -21,31 +59,24 @@ const styles = StyleSheet.create({
     button: {
         paddingLeft: 20,
         paddingRight: 20,
-        paddingTop: 20,
-        fontSize: 20,
-        marginBottom: 20
+        paddingTop: 10,
+        marginBottom: 10,
     },
     text: {
+        flex: 1,
         marginLeft: 10,
+        marginTop: 50,
         fontSize: 20,
 
     },
-    textInput: {
-        borderColor: 'black',
-        borderBottomWidth: 1,
-        fontSize: 30,
-        paddingRight: 5,
-        paddingLeft: 5,
-        textAlign: 'center',
+    containerButton: {
+        flex: 1,
+        marginBottom: 40
     },
     containerText: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
-    },
-    containerTextInput: {
-        flex: 3,
-        marginTop: 100
     },
     container: {
         flex: 1,

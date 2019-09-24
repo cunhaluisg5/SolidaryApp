@@ -18,7 +18,7 @@ class Index extends React.Component {
                     color="black"
                 />
             }
-            titleStyle={{ color: 'black', marginLeft: 10 }}
+            titleStyle={{ color: 'black', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{backgroundColor: '#4169E1'}}
             title="Entrar"
             onPress={() => this.tryEnter()} />
@@ -33,7 +33,7 @@ class Index extends React.Component {
                     color="black"
                 />
             }
-            titleStyle={{ color: 'black', marginLeft: 10 }}
+            titleStyle={{ color: 'black', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{backgroundColor: '#FF8C00'}}
             title="Cadastrar-me"
             onPress={() => this.tryRegister()}
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 20
     },
     text: {
         flex: 1,
@@ -99,7 +100,6 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 10,
-        fontSize: 50,
         marginBottom: 10,
     },
     containerButton: {
