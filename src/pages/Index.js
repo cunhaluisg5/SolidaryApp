@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, Button, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from 'react-native-elements';
 
 class Index extends React.Component {
     constructor(props) {
@@ -8,16 +11,33 @@ class Index extends React.Component {
 
     renderButtonEnter() {
         return <Button
+            icon={
+                <Icon
+                    name="check"
+                    size={15}
+                    color="black"
+                />
+            }
+            titleStyle={{ color: 'black', marginLeft: 10 }}
+            buttonStyle={{backgroundColor: '#4169E1'}}
             title="Entrar"
-            color="#4169E1"
             onPress={() => this.tryEnter()} />
     }
 
     renderButtonRegister() {
         return <Button
+            icon={
+                <Icon
+                    name="user"
+                    size={15}
+                    color="black"
+                />
+            }
+            titleStyle={{ color: 'black', marginLeft: 10 }}
+            buttonStyle={{backgroundColor: '#FF8C00'}}
             title="Cadastrar-me"
-            color="#FF8C00"
-            onPress={() => this.tryRegister()} />
+            onPress={() => this.tryRegister()}
+        />
     }
 
     tryEnter() {
@@ -36,8 +56,9 @@ class Index extends React.Component {
                 <View style={styles.containerImage}>
                     <Image style={styles.image} source={require('../images/logo.png')} />
                 </View>
-                <Text style={styles.text}>Acesse ou cadastre-se</Text>
-
+                <View style={styles.containerText}>
+                    <Text style={styles.text}>Entre ou cadastre-se</Text>
+                </View>
                 <View style={styles.containerButton}>
                     <View style={styles.button}>
                         {this.renderButtonEnter()}
@@ -53,8 +74,8 @@ class Index extends React.Component {
 
 const styles = StyleSheet.create({
     image: {
-        width: 180,
-        height: 180
+        width: wp('35%'),
+        height: hp('21%')
     },
     containerImage: {
         flex: 1,
@@ -63,9 +84,16 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
-        textAlign: "center",
-        fontSize: 30,
-        textAlignVertical: "top",
+        fontSize: 25,
+    },
+    containerText: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 25,
+    },
+    icon: {
+        height: hp('10%')
     },
     button: {
         paddingLeft: 20,

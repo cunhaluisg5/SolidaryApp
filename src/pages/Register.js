@@ -1,92 +1,109 @@
 import React from 'react';
-import { StyleSheet, Button, View, Text, Image } from 'react-native';
+import { StyleSheet, TextInput, Button, View, Text } from 'react-native';
+import { Dropdown } from 'react-native-material-dropdown';
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    renderButtonGoogle() {
+    renderButton() {
         return <Button
-            title="Google"
-            color="#008000"
-            onPress={() => this.tryGoogle()} />
-    }
-
-    renderButtonFacebook() {
-        return <Button
-            title="Facebook"
-            color="#4169E1"
-            onPress={() => this.tryFacebook()} />
-    }
-
-    renderButtonMail() {
-        return <Button
-            title="E-mail"
+            title="Cadastrar"
             color="#FF8C00"
-            onPress={() => this.tryMail()} />
+            onPress={() => this.tryRegister()} />
     }
 
-    tryGoogle() {
-    }
-
-    tryFacebook() {
-    }
-
-    tryMail() {
+    tryRegister() {
         const { navigation } = this.props
-        navigation.navigate("RegisterMail")
+        navigation.navigate("Index")
+    }
+
+    renderDrop() {
+        const data = [
+            {
+                value: 'Doador',
+            },
+            {
+                value: 'Instituição',
+            }
+        ];
+        return data
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.containerImage}>
-                    <Image style={styles.image} source={require('../images/logo.png')} />
+                <View style={styles.containerText}>
+                    <Text style={styles.text}>Preencha os dados abaixo</Text>
+                    <Text style={styles.text}>para efetuar o cadastro</Text>
                 </View>
-                <Text style={styles.text}>Registre-se com</Text>
-                <View style={styles.containerButton}>
-                    <View style={styles.button}>
-                        {this.renderButtonGoogle()}
-                    </View>
-                    <View style={styles.button}>
-                        {this.renderButtonFacebook()}
-                    </View>
-                    <View style={styles.button}>
-                        {this.renderButtonMail()}
-                    </View>
+
+                <View style={styles.type}>
+                    <Text style={styles.text}>Tipo de Cadastro</Text>
+                    <Dropdown data={this.renderDrop()} />
                 </View>
-            </View >
+
+                <View style={styles.containerTextInput}>
+                    <Text style={styles.text}>Nome: </Text>
+                    <TextInput
+                        style={styles.textInput}/>
+                    <Text style={styles.text}>Telefone: </Text>
+                    <TextInput
+                        style={styles.textInput}/>
+                        <Text style={styles.text}>E-mail: </Text>
+                    <TextInput
+                        style={styles.textInput}/>
+                        <Text style={styles.text}>Senha: </Text>
+                    <TextInput
+                        style={styles.textInput}
+                        secureTextEntry/>
+                </View>
+
+                <View style={styles.button}>
+                    {this.renderButton()}
+                </View>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: 100,
-        height: 100
-    },
-    containerImage: {
+    type: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 40
-    },
-    text: {
-        flex: 1,
-        textAlign: "center",
-        fontSize: 20,
-        textAlignVertical: "top",
+        marginLeft: 10,
+        marginRight: 10
     },
     button: {
         paddingLeft: 20,
         paddingRight: 20,
-        paddingTop: 10,
-        fontSize: 50,
-        marginBottom: 10,
+        paddingTop: 20,
+        fontSize: 20,
+        marginBottom: 20
     },
-    containerButton: {
-        marginBottom: 200
+    text: {
+        fontSize: 20,
+        marginLeft: 10,
+        marginRight: 10
+
+    },
+    textInput: {
+        borderColor: 'black',
+        borderBottomWidth: 1,
+        fontSize: 20,
+        paddingRight: 5,
+        paddingLeft: 5,
+        textAlign: 'center',
+        marginLeft: 10,
+        marginRight: 10
+    },
+    containerText: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    containerTextInput: {
+        flex: 3,
     },
     container: {
         flex: 1,
