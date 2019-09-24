@@ -1,97 +1,109 @@
 import React from 'react';
-import { StyleSheet, Button, View, Text, Image } from 'react-native';
+import { StyleSheet, TextInput, Button, View, Text, ActivityIndicator, Alert } from 'react-native';
 
 class Enter extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+    this.state = {
+      mail: '',
+      pass: '',
+      message: '',
+      isLoading: false
     }
+  }
 
-    renderButtonGoogle() {
-        return <Button
-            title="Google"
-            color="#008000"
-            onPress={() => this.tryGoogle()} />
-    }
+  onChangeMail(value) {
+    this.setState({
+      mail: value
+    })
+  }
 
-    renderButtonFacebook() {
-        return <Button
-            title="Facebook"
-            color="#4169E1"
-            onPress={() => this.tryFacebook()} />
-    }
+  onChangePass(value) {
+    this.setState({
+      pass: value
+    })
+  }
 
-    renderButtonMail() {
-        return <Button
-            title="E-mail"
-            color="#FF8C00"
-            onPress={() => this.tryMail()} />
-    }
+  renderMessage() {
+    return (
+      <Text> {this.state.message} </Text>
+    )
+  }
 
-    tryGoogle() {
-    }
+  renderButton() {
+    return <Button
+      title="Entrar"
+      color="#FF8C00"
+      onPress={() => this.tryLogin()} />
+  }
 
-    tryFacebook() {
-    }
+  tryLogin() {
+    this.setState({ isLoading: true })
+    const { mail, pass } = this.state
+    const { navigation } = this.props
+    navigation.navigate("Main")
+  }
 
-    tryMail() {
-        const { navigation } = this.props
-        navigation.navigate("EnterMail")
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.containerImage}>
-                    <Image style={styles.image} source={require('../images/logo.png')} />
-                </View>
-                <Text style={styles.text}>Acesse com</Text>
-                <View style={styles.containerButton}>
-                    <View style={styles.button}>
-                        {this.renderButtonGoogle()}
-                    </View>
-                    <View style={styles.button}>
-                        {this.renderButtonFacebook()}
-                    </View>
-                    <View style={styles.button}>
-                        {this.renderButtonMail()}
-                    </View>
-                </View>
-            </View >
-        );
-    }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.containerText}>
+          <Text style={styles.text}>Digite o e-mail e a senha</Text>
+          <Text style={styles.text}>para continuar</Text>
+        </View>
+        <View style={styles.containerTextInput}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="user@email.com"
+            onChangeText={(value) => this.onChangeMail(value)} />
+          <TextInput
+            style={styles.textInput}
+            placeholder="********"
+            secureTextEntry
+            onChangeText={(value) => this.onChangePass(value)} />
+        </View>
+        <View style={styles.button}>
+          {this.renderButton()}
+        </View>
+        {this.renderMessage()}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: 100,
-        height: 100
-    },
-    containerImage: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 40
-    },
-    text: {
-        flex: 1,
-        textAlign: "center",
-        fontSize: 20,
-        textAlignVertical: "top",
-    },
-    button: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 10,
-        fontSize: 50,
-        marginBottom: 10,
-    },
-    containerButton: {
-        marginBottom: 200
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#DCDCDC',
-    },
+  button: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    fontSize: 20,
+    marginBottom: 20
+  },
+  textInput: {
+    borderColor: 'black',
+    borderBottomWidth: 1,
+    fontSize: 30,
+    paddingBottom: 10,
+    paddingRight: 5,
+    paddingLeft: 5,
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 20
+  },
+  containerText: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  containerTextInput: {
+    flex: 3,
+    marginTop: 100
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#DCDCDC',
+  },
 });
 
 export default Enter;
