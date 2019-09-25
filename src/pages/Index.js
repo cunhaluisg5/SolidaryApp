@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button } from 'react-native-elements';
+import { Button } from 'react-native-elements'; 
 
 class Index extends React.Component {
     constructor(props) {

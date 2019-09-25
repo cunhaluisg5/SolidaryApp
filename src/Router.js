@@ -4,6 +4,7 @@ import Enter from './pages/Enter';
 import Register from './pages/Register';
 import Info from './pages/Info'
 import Donate from './pages/Donate'
+import BloodDonation from './pages/BloodDonation'
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -38,6 +39,9 @@ const AppNavigator = createStackNavigator(
     'Main': {
       screen: AppTabNavigator
     },
+    'BloodDonation': {
+      screen: BloodDonation,
+    }
   },
   {
     defaultNavigationOptions: {
