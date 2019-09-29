@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Header } from 'react-native-elements';
+import { Header, Card } from 'react-native-elements';
 
 class Info extends React.Component {
     constructor(props) {
@@ -15,9 +15,16 @@ class Info extends React.Component {
                     centerComponent={{ text: 'Notificações', style: { color: '#fff', fontSize: 20 } }}
                     rightComponent={{ icon: 'home', color: '#fff' }}
                 />
-                <View style={styles.containerText}>
-                    <Text style={styles.text}>Informações!</Text>
-                </View>
+                <Card title="Instituições vistas no último mês"
+                      titleStyle={{backgroundColor: '#ADD8E6'}}
+                      containerStyle={{backgroundColor: '#F0F8FF'}}>
+                    <Text>
+                        HemoCentro JF
+                    </Text>
+                    <Text>
+                        HemoCentro BH
+                    </Text>
+                </Card>
             </View>
         );
     }

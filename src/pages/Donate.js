@@ -54,9 +54,6 @@ class Donate extends React.Component {
                     centerComponent={{ text: 'Doação', style: { color: '#fff', fontSize: 20 } }}
                     rightComponent={{ icon: 'home', color: '#fff' }}
                 />
-                <View style={styles.containerText}>
-                    <Text style={styles.text}>Contribua!</Text>
-                </View>
                 <View style={styles.containerButton}>
                     <View style={styles.button}>
                         {this.renderButton0()}
@@ -91,7 +88,7 @@ const styles = StyleSheet.create({
     },
     containerButton: {
         flex: 1,
-        marginBottom: 40
+        marginTop: 40
     },
     containerText: {
         flex: 1,
