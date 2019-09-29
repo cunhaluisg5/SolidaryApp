@@ -1,12 +1,31 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Image, TextInput } from 'react-native';
+import { Card } from 'react-native-elements'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Button } from 'react-native-elements'; 
+import { Button } from 'react-native-elements';
 
 class Index extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            mail: '',
+            pass: '',
+            message: '',
+            isLoading: false
+        }
+    }
+
+    onChangeMail(value) {
+        this.setState({
+            mail: value
+        })
+    }
+
+    onChangePass(value) {
+        this.setState({
+            pass: value
+        })
     }
 
     renderButtonEnter() {
@@ -15,11 +34,11 @@ class Index extends React.Component {
                 <Icon
                     name="check"
                     size={15}
-                    color="black"
+                    color="white"
                 />
             }
-            titleStyle={{ color: 'black', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{backgroundColor: '#4169E1'}}
+            titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#228B22' }}
             title="Entrar"
             onPress={() => this.tryEnter()} />
     }
@@ -30,19 +49,21 @@ class Index extends React.Component {
                 <Icon
                     name="user"
                     size={15}
-                    color="black"
+                    color="white"
                 />
             }
-            titleStyle={{ color: 'black', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{backgroundColor: '#FF8C00'}}
+            titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#00BFFF' }}
             title="Cadastrar-me"
             onPress={() => this.tryRegister()}
         />
     }
 
     tryEnter() {
+        this.setState({ isLoading: true })
+        const { mail, pass } = this.state
         const { navigation } = this.props
-        navigation.navigate("Enter")
+        navigation.navigate("Main")
     }
 
     tryRegister() {
@@ -54,11 +75,21 @@ class Index extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.containerImage}>
-                    <Image style={styles.image} source={require('../images/logo.png')} />
+                    <Image resizeMode="contain" style={styles.image} source={require('../images/logo.png')} />
                 </View>
-                <View style={styles.containerText}>
-                    <Text style={styles.text}>Entre ou cadastre-se</Text>
-                </View>
+                <Card title="Logar ou Cadastrar-se">
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="user@email.com"
+                        onChangeText={(value) => this.onChangeMail(value)}
+                    />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="********"
+                        secureTextEntry
+                        onChangeText={(value) => this.onChangePass(value)}
+                    />
+                </Card>
                 <View style={styles.containerButton}>
                     <View style={styles.button}>
                         {this.renderButtonEnter()}
@@ -74,8 +105,8 @@ class Index extends React.Component {
 
 const styles = StyleSheet.create({
     image: {
-        width: wp('35%'),
-        height: hp('21%')
+        width: wp('50%'),
+        height: hp('50%')
     },
     containerImage: {
         flex: 1,
@@ -93,6 +124,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontSize: 25,
     },
+    textInput: {
+        borderColor: 'lightblue',
+        borderBottomWidth: 1,
+        borderStyle: 'solid',
+        fontSize: 15,
+        fontFamily: 'sans-serif-light',
+        paddingBottom: 10,
+        paddingRight: 5,
+        paddingLeft: 5,
+        textAlign: 'left',
+    },
     icon: {
         height: hp('10%')
     },
@@ -107,8 +149,8 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#DCDCDC',
-    },
+        backgroundColor: '#FFF',
+    }
 });
 
 export default Index;

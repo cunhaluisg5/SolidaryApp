@@ -15,12 +15,12 @@ class Register extends React.Component {
                 <Icon
                     name="user"
                     size={15}
-                    color="black"
+                    color="white"
                 />
             }
             title="Cadastrar"
-            titleStyle={{ color: 'black', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{ backgroundColor: '#FF8C00' }}
+            titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#00BFFF' }}
             onPress={() => this.tryRegister()} />
     }
 
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#DCDCDC',
+        backgroundColor: '#FFF',
     },
 });
 

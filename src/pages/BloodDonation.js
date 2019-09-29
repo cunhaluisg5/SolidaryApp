@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { Header } from 'react-native-elements';
+import { StyleSheet, View, Text } from 'react-native';
+import { Header, Card } from 'react-native-elements';
 
 class BloodDonation extends React.Component {
 
@@ -16,16 +16,18 @@ class BloodDonation extends React.Component {
                     centerComponent={{ text: 'Endereço', style: { color: '#fff', fontSize: 20 } }}
                     rightComponent={{ icon: 'home', color: '#fff' }}
                 />
-                <View style={styles.containerText}>
-                    <Text style={styles.text}>Rua Barão de Cataguases,
-                    S/N - Santa Helena,
-                    Juiz de Fora - MG,
+                <Card title="HemoCentro JF">
+                    <View style={styles.containerText}>
+                        <Text style={styles.text}>Rua Barão de Cataguases,
+                        S/N - Santa Helena,
+                        Juiz de Fora - MG,
                     36015-370</Text>
-                </View>
-                <View style={styles.containerText}>
-                    <Text style={styles.text}>Rua Alameda Ezequiel Dias, 321 -
-                    Santa Efigênia, Belo Horizonte - MG, 30130-110</Text>
-                </View>
+                    </View>
+                </Card>
+                <Card title="HemoCentro BH">
+                    <Text style={styles.text}> Rua Alameda Ezequiel Dias, 321 -
+                    Santa Efigênia, Belo Horizonte - MG, 30130-110 </Text>
+                </Card>
             </View>
         );
     }
@@ -34,7 +36,7 @@ class BloodDonation extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#DCDCDC',
+        backgroundColor: '#FFF',
     },
     containerText: {
         flex: 1,
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
-        fontSize: 25,
+        fontSize: 15,
     }
 });
 
