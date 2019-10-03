@@ -18,7 +18,7 @@ class BloodDonation extends React.Component {
 
     sendWhatsApp = (text, phone) => {
         Linking.openURL(`whatsapp://send?text=${text}&phone=${phone}`);
-    }    
+    }
 
     sendMail = (mail) => {
         const to = mail
@@ -37,7 +37,7 @@ class BloodDonation extends React.Component {
             titleStyle={{ color: 'white', marginLeft: 10, fontSize: 10 }}
             buttonStyle={{ backgroundColor: '#34AF23', borderRadius: 15 }}
             title="32900000000"
-            onPress={() => this.sendWhatsApp('Mensagem','32900000000')}
+            onPress={() => this.sendWhatsApp('Mensagem', '32900000000')}
         />
     }
 
@@ -82,8 +82,8 @@ class BloodDonation extends React.Component {
                     rightComponent={{ icon: 'home', color: '#fff' }}
                 />
                 <Card title="HemoCentro JF"
-                      titleStyle={{backgroundColor: '#ADD8E6'}}
-                      containerStyle={{backgroundColor: '#F0F8FF'}}>
+                    titleStyle={{ backgroundColor: '#ADD8E6' }}
+                    containerStyle={{ backgroundColor: '#F0F8FF' }}>
                     <Text>
                         Rua Barão de Cataguases,
                         S/N - Santa Helena,
@@ -97,8 +97,8 @@ class BloodDonation extends React.Component {
                     </View>
                 </Card>
                 <Card title="HemoCentro BH"
-                      titleStyle={{backgroundColor: '#ADD8E6'}}
-                      containerStyle={{backgroundColor: '#F0F8FF'}}>
+                    titleStyle={{ backgroundColor: '#ADD8E6' }}
+                    containerStyle={{ backgroundColor: '#F0F8FF' }}>
                     <Text>
                         Rua Alameda Ezequiel Dias, 321 -
                         Santa Efigênia,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 25,
+        fontSize: 25, 
     },
     text: {
         flex: 1,

@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { View } from '../styles/style';
 import { Button, Header } from 'react-native-elements';
 
 class Donate extends React.Component {
@@ -48,23 +49,23 @@ class Donate extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View>
                 <Header
                     leftComponent={{ icon: 'menu', color: '#fff' }}
                     centerComponent={{ text: 'Doação', style: { color: '#fff', fontSize: 20 } }}
                     rightComponent={{ icon: 'home', color: '#fff' }}
                 />
-                <View style={styles.containerButton}>
-                    <View style={styles.button}>
+                <View flexDirection='column' display='flex' marginTop='40px'>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton0()}
                     </View>
-                    <View style={styles.button}>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton1()}
                     </View>
-                    <View style={styles.button}>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton2()}
                     </View>
-                    <View style={styles.button}>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton3()}
                     </View>
                 </View>
@@ -72,33 +73,5 @@ class Donate extends React.Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    button: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 5,
-        marginBottom: 10,
-    },
-    text: {
-        flex: 1,
-        marginLeft: 10,
-        marginTop: 40,
-        fontSize: 20
-    },
-    containerButton: {
-        flex: 1,
-        marginTop: 40
-    },
-    containerText: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#FFF',
-    },
-});
 
 export default Donate;
