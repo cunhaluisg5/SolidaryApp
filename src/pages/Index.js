@@ -105,8 +105,8 @@ class Index extends React.Component {
 
 const styles = StyleSheet.create({
     image: {
-        width: wp('50%'),
-        height: hp('50%')
+        width: wp('70%'),
+        height: hp('70%') 
     },
     containerImage: {
         flex: 1,
