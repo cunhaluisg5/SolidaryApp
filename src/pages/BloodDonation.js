@@ -3,7 +3,8 @@ import { StyleSheet, View, Text, Linking } from 'react-native';
 import { Header, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
-import email from 'react-native-email'
+import email from 'react-native-email';
+import HeaderMenu from '../components/HeaderMenu';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class BloodDonation extends React.Component {
@@ -76,11 +77,7 @@ class BloodDonation extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'Sangue', style: { color: '#fff', fontSize: 20 } }}
-                    rightComponent={{ icon: 'home', color: '#fff' }}
-                />
+                <HeaderMenu text = 'Sangue'/>
                 <Card title="HemoCentro JF"
                     titleStyle={{ backgroundColor: '#ADD8E6' }}
                     containerStyle={{ backgroundColor: '#F0F8FF' }}>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from 'react-native-elements';
+import HeaderMenu from '../components/HeaderMenu';
 import { View } from '../styles/style';
-import { Button, Header } from 'react-native-elements';
 
 class Donate extends React.Component {
     constructor(props) {
@@ -50,11 +50,7 @@ class Donate extends React.Component {
     render() {
         return (
             <View>
-                <Header
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'Doação', style: { color: '#fff', fontSize: 20 } }}
-                    rightComponent={{ icon: 'home', color: '#fff' }}
-                />
+                <HeaderMenu text = 'Doação'/>
                 <View flexDirection='column' display='flex' marginTop='40px'>
                     <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton0()}

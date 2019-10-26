@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Header, Card } from 'react-native-elements';
+import { Card } from 'react-native-elements';
+import HeaderMenu from '../components/HeaderMenu';
 import { View } from '../styles/style';
 
 class Info extends React.Component {
@@ -11,11 +12,7 @@ class Info extends React.Component {
     render() {
         return (
             <View>
-                <Header
-                    leftComponent={{ icon: 'menu', color: '#fff' }}
-                    centerComponent={{ text: 'Notificações', style: { color: '#fff', fontSize: 20 } }}
-                    rightComponent={{ icon: 'home', color: '#fff' }}
-                />
+                <HeaderMenu text = 'Notificações'/>
                 <Card title="Instituições vistas no último mês"
                       titleStyle={{backgroundColor: '#ADD8E6'}}
                       containerStyle={{backgroundColor: '#F0F8FF'}}>
