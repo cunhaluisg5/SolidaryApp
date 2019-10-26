@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, Linking } from 'react-native';
-import { Header, Card } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import email from 'react-native-email';
-import HeaderMenu from '../components/HeaderMenu';
+import HeaderMenu from '../../components/HeaderMenu';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-class BloodDonation extends React.Component {
+class ClotheDonation extends React.Component {
 
     constructor(props) {
         super(props);
@@ -77,30 +77,15 @@ class BloodDonation extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <HeaderMenu text = 'Sangue'/>
-                <Card title="HemoCentro JF"
+                <HeaderMenu text = 'Roupa' color = '#DAA520'/>
+                <Card title="Exemplo JF"
                     titleStyle={{ backgroundColor: '#ADD8E6' }}
                     containerStyle={{ backgroundColor: '#F0F8FF' }}>
                     <Text>
-                        Rua Barão de Cataguases,
-                        S/N - Santa Helena,
-                        Juiz de Fora - MG,
-                        36015-370
-                    </Text>
-                    <View style={styles.button}>
-                        {this.renderButtonPhone()}
-                        {this.renderButtonMail()}
-                        {this.renderButtonWhatsApp()}
-                    </View>
-                </Card>
-                <Card title="HemoCentro BH"
-                    titleStyle={{ backgroundColor: '#ADD8E6' }}
-                    containerStyle={{ backgroundColor: '#F0F8FF' }}>
-                    <Text>
-                        Rua Alameda Ezequiel Dias, 321 -
-                        Santa Efigênia,
-                        Belo Horizonte - MG,
-                        30130-110
+                        Rua Exemplo,
+                        S/N - Exemplo,
+                        Exemplo - MG,
+                        00000-000
                     </Text>
                     <View style={styles.button}>
                         {this.renderButtonPhone()}
@@ -115,8 +100,12 @@ class BloodDonation extends React.Component {
 
 const styles = StyleSheet.create({
     button: {
-        width: wp('30%'),
+        width: wp('28%'),
         marginTop: 20,
+        flex: 1,
+        flexDirection: "row",
+        alignContent: "center",
+        alignItems: "center"
     },
     container: {
         flex: 1,
@@ -134,6 +123,4 @@ const styles = StyleSheet.create({
     }
 });
 
-
-
-export default BloodDonation;
+export default ClotheDonation;

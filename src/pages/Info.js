@@ -12,7 +12,7 @@ class Info extends React.Component {
     render() {
         return (
             <View>
-                <HeaderMenu text = 'Notificações'/>
+                <HeaderMenu text = 'Notificações' color = '#3D6DCC'/>
                 <Card title="Instituições vistas no último mês"
                       titleStyle={{backgroundColor: '#ADD8E6'}}
                       containerStyle={{backgroundColor: '#F0F8FF'}}>

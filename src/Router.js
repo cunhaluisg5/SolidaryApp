@@ -2,9 +2,12 @@ import Index from './pages/Index';
 import Main from './pages/Main';
 import Enter from './pages/Enter';
 import Register from './pages/Register';
-import Info from './pages/Info'
-import Donate from './pages/Donate'
-import BloodDonation from './pages/BloodDonation'
+import Info from './pages/Info';
+import Donate from './pages/Donate';
+import BloodDonation from './pages/donations/BloodDonation';
+import TimeDonation from './pages/donations/TimeDonation';
+import ClotheDonation from './pages/donations/ClotheDonation';
+import MoneyDonation from './pages/donations/MoneyDonation';
 
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
@@ -63,7 +66,16 @@ const AppNavigator = createStackNavigator(
       screen: AppTabNavigator
     },
     'BloodDonation': {
-      screen: BloodDonation,
+      screen: BloodDonation
+    },
+    'TimeDonation': {
+      screen: TimeDonation
+    },
+    'ClotheDonation': {
+      screen: ClotheDonation
+    },
+    'MoneyDonation': {
+      screen: MoneyDonation
     }
   },
   {
