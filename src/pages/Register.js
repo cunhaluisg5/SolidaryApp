@@ -1,12 +1,15 @@
 import React from 'react';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
-import { Dropdown } from 'react-native-material-dropdown';
-import { Button } from 'react-native-elements';
+import { StyleSheet, TextInput, View, Text, ScrollView } from 'react-native';
+import { Button, CheckBox, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            checkedPerson: true,
+            checkedOrganization: false
+        }
     }
 
     renderButton() {
@@ -29,60 +32,99 @@ class Register extends React.Component {
         navigation.navigate("Index")
     }
 
-    renderDrop() {
-        const data = [
-            {
-                value: 'Doador',
-            },
-            {
-                value: 'Instituição',
-            }
-        ];
-        return data
+    checkPerson() {
+        this.setState({ checkedPerson: true, checkedOrganization: false })
+    }
+
+    checkOrganization() {
+        this.setState({ checkedOrganization: true, checkedPerson: false })
+    }
+
+    renderScreen() {
+        if (this.state.checkedPerson) {
+            return this.renderRegisterPerson()
+        }
+        return this.renderRegisterOrganization()
+    }
+
+    renderRegisterPerson() {
+        return (
+            <Card title="Cadastro de Pessoa">
+                <Text>CPF: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Nome Completo: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Data de Nascimento: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Sexo: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>CEP: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Endereço: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>UF: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Cidade: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Telefone: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>E-mail: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Usuário: </Text>
+                <TextInput style={styles.textInput}/>
+                <Text>Senha: </Text>
+                <TextInput secureTextEntry style={styles.textInput}/>
+            </Card>
+        )
+    }
+
+    renderRegisterOrganization() {
+        return <Card title="Cadastro de Instituição">
+            <Text>.........</Text>
+            <Text>...</Text>
+        </Card>
     }
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <View style={styles.containerText}>
                     <Text style={styles.text}>Preencha os dados abaixo</Text>
                     <Text style={styles.text}>para efetuar o cadastro</Text>
                 </View>
 
-                <View style={styles.type}>
-                    <Text style={styles.text}>Tipo de Cadastro</Text>
-                    <Dropdown data={this.renderDrop()} />
+                <View style={styles.checkbox}>
+                    <CheckBox
+                        title='Pessoa'
+                        checked={this.state.checkedPerson}
+                        onPress={() => this.checkPerson()}
+                    />
+                    <CheckBox
+                        title='Instituição'
+                        checked={this.state.checkedOrganization}
+                        onPress={() => this.checkOrganization()}
+                    />
                 </View>
 
-                <View style={styles.containerTextInput}>
-                    <Text style={styles.text}>Nome: </Text>
-                    <TextInput
-                        style={styles.textInput} />
-                    <Text style={styles.text}>Telefone: </Text>
-                    <TextInput
-                        style={styles.textInput} />
-                    <Text style={styles.text}>E-mail: </Text>
-                    <TextInput
-                        style={styles.textInput} />
-                    <Text style={styles.text}>Senha: </Text>
-                    <TextInput
-                        style={styles.textInput}
-                        secureTextEntry />
+                <View>
+                    {this.renderScreen()}
                 </View>
 
                 <View style={styles.button}>
                     {this.renderButton()}
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    type: {
+    checkbox: {
+        flexDirection: "row",
         flex: 1,
-        marginLeft: 10,
-        marginRight: 10
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10
     },
     button: {
         paddingLeft: 20,
@@ -92,7 +134,7 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     text: {
-        fontSize: 20,
+        fontSize: 15,
         marginLeft: 10,
         marginRight: 10
 
@@ -105,15 +147,14 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         textAlign: 'center',
         marginLeft: 10,
-        marginRight: 10
+        marginRight: 10,
+        marginBottom: 10
     },
     containerText: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center"
-    },
-    containerTextInput: {
-        flex: 3,
+        alignItems: "center",
+        marginTop: 50
     },
     container: {
         flex: 1,
