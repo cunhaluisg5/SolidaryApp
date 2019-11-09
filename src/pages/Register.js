@@ -80,8 +80,18 @@ class Register extends React.Component {
 
     renderRegisterOrganization() {
         return <Card title="Cadastro de Instituição">
-            <Text>.........</Text>
-            <Text>...</Text>
+            <Text>CNPJ: </Text>
+            <TextInput />
+            <Text>Nome: </Text>
+            <TextInput />
+            <Text>Responsável: </Text>
+            <TextInput />
+            <Text>Site: </Text>
+            <TextInput />
+            <Text>Login: </Text>
+            <TextInput />
+            <Text>Senha: </Text>
+            <TextInput />            
         </Card>
     }
 

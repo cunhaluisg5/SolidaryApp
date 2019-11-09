@@ -4,6 +4,7 @@ import { Card } from 'react-native-elements'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
+import firebase from '../database/firebase'
 
 class Index extends React.Component {
     constructor(props) {
@@ -63,7 +64,40 @@ class Index extends React.Component {
         this.setState({ isLoading: true })
         const { mail, pass } = this.state
         const { navigation } = this.props
-        navigation.navigate("Main")
+
+        //promisse
+        firebase.auth().signInWithEmailAndPassword(mail, pass)
+            .then(user => {
+                console.log('usuário autenticado com sucesso ', user)
+                this.setState({ message: 'Sucesso' })
+                navigation.navigate("Main");
+            })
+            .catch(error => {
+                //  console.log('deu ruim ', error)
+                if (error.code === 'auth/user-not-found') {
+                    Alert.alert('Não cadastrado',
+                        'Deseja cadastrar um novo usuário?',
+                        [
+                            {
+                                text: 'Sim',
+                                onPress: () => {
+                                    firebase.auth().createUserWithEmailAndPassword(mail, pass)
+                                        .then(user => {
+                                            this.setState({ message: 'Sucesso' })
+                                        })
+                                        .catch(error => {
+                                            this.setState({ message: error.code })
+                                        })
+                                }
+                            },
+                            {
+                                text: 'Não',
+                                onPress: () => { console.log('Usuário não quer criar conta') }
+                            }])
+                }
+            })
+            .finally(() => this.setState({ isLoading: false }))
+        //navigation.navigate("Main")
     }
 
     tryRegister() {
@@ -106,7 +140,7 @@ class Index extends React.Component {
 const styles = StyleSheet.create({
     image: {
         width: wp('70%'),
-        height: hp('70%') 
+        height: hp('70%')
     },
     containerImage: {
         flex: 1,
