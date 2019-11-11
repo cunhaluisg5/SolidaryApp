@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, TextInput } from 'react-native';
+import { StyleSheet, View, Image, ActivityIndicator, TextInput, Alert } from 'react-native';
 import { Card } from 'react-native-elements'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -30,6 +30,9 @@ class Index extends React.Component {
     }
 
     renderButtonEnter() {
+        if (this.state.isLoading)
+            return <ActivityIndicator />
+
         return <Button
             icon={
                 <Icon
@@ -68,12 +71,10 @@ class Index extends React.Component {
         //promisse
         firebase.auth().signInWithEmailAndPassword(mail, pass)
             .then(user => {
-                console.log('usuário autenticado com sucesso ', user)
                 this.setState({ message: 'Sucesso' })
                 navigation.navigate("Main");
             })
             .catch(error => {
-                //  console.log('deu ruim ', error)
                 if (error.code === 'auth/user-not-found') {
                     Alert.alert('Não cadastrado',
                         'Deseja cadastrar um novo usuário?',
@@ -97,7 +98,6 @@ class Index extends React.Component {
                 }
             })
             .finally(() => this.setState({ isLoading: false }))
-        //navigation.navigate("Main")
     }
 
     tryRegister() {
