@@ -2,6 +2,8 @@ import Index from './pages/Index';
 import Main from './pages/Main';
 import Enter from './pages/Enter';
 import Register from './pages/Register';
+import RegisterPerson from './pages/RegisterPerson';
+import RegisterONG from './pages/RegisterONG';
 import Info from './pages/Info';
 import Donate from './pages/Donate';
 import BloodDonation from './pages/donations/BloodDonation';
@@ -61,6 +63,12 @@ const AppNavigator = createStackNavigator(
     },
     'Register': {
       screen: Register,
+    },
+    'RegisterPerson': {
+      screen: RegisterPerson,
+    },
+    'RegisterONG': {
+      screen: RegisterONG,
     },
     'Main': {
       screen: AppTabNavigator
