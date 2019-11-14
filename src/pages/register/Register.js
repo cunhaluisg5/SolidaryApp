@@ -23,7 +23,7 @@ class Register extends React.Component {
             <View style={styles.container}>
                 <View style={styles.image}>
                     <Card
-                        image={require('../images/user.png')}>
+                        image={require('../../images/user.png')}>
                         <Text style={styles.text}>
                             Cadastre-se como um voluntário para efetuar doações.
                         </Text>
@@ -35,7 +35,7 @@ class Register extends React.Component {
                 </View>
                 <View style={styles.image}>
                     <Card 
-                        image={require('../images/ong.png')}>
+                        image={require('../../images/ong.png')}>
                         <Text style={styles.text}>
                             Cadastre-se como uma ONG para receber doações.
                         </Text>

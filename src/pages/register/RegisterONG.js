@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, TextInput, View, Text, ScrollView } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text'
-import firebase from '../database/firebase'
+import firebase from '../../database/firebase'
 import { Button, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class RegisterPerson extends React.Component {
+class RegisterONG extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cpf: '',
+            cnpj: '',
             nome: '',
             telefone: '',
             email: '',
@@ -34,15 +34,15 @@ class RegisterPerson extends React.Component {
     }
 
     tryRegister = () => {
-        const { cpf, nome, telefone, email, usuario, senha } = this.state;
+        const { cnpj, nome, telefone, email, usuario, senha } = this.state;
         const { navigation } = this.props;
         firebase.auth().createUserWithEmailAndPassword(email.trim(), senha)
         .then((user) => {
             const userID = user.user.uid;
-            const userRef = firebase.firestore().collection('Voluntario')
+            const userRef = firebase.firestore().collection('ONG')
             .doc(userID);
             userRef.set({
-                cpf,
+                cnpj,
                 nome,
                 telefone,
                 email,
@@ -55,19 +55,19 @@ class RegisterPerson extends React.Component {
     }
 
     renderScreen() {
-        return this.renderRegisterPerson()
+        return this.renderRegisterONG()
     }
 
-    renderRegisterPerson() {
+    renderRegisterONG() {
         return (
-            <Card title="Cadastro de Voluntário">
-                <Text>CPF: </Text>
+            <Card title="Cadastro de ONG">
+                <Text>CNPJ: </Text>
                 <TextInputMask style={styles.textInput}
-                    type={'cpf'}
-                    value={this.state.cpf}
-                    onChangeText={(text) => { this.setState({ cpf: text }) }}
-                    placeholder="999.999.999-99" />
-                <Text>Nome Completo: </Text>
+                    type={'cnpj'}
+                    value={this.state.cnpj}
+                    onChangeText={(text) => { this.setState({ cnpj: text }) }}
+                    placeholder="99.999.999/9999-99" />
+                <Text>Nome: </Text>
                 <TextInput style={styles.textInput}
                     placeholder="nome ...."
                     onChangeText={(value) => { this.setState({ nome: value }) }} />
@@ -154,4 +154,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default RegisterPerson;
+export default RegisterONG;

@@ -1,11 +1,13 @@
 import Index from './pages/Index';
-import Main from './pages/Main';
-import Enter from './pages/Enter';
-import Register from './pages/Register';
-import RegisterPerson from './pages/RegisterPerson';
-import RegisterONG from './pages/RegisterONG';
-import Info from './pages/Info';
-import Donate from './pages/Donate';
+import MainPerson from './pages/main/MainPerson';
+import MainONG from './pages/main/MainONG';
+import Register from './pages/register/Register';
+import RegisterPerson from './pages/register/RegisterPerson';
+import RegisterONG from './pages/register/RegisterONG';
+import Info from './pages/sub/Info';
+import Donate from './pages/sub/Donate';
+import MyAd from './pages/sub/MyAd';
+import Ad from './pages/sub/Ad';
 import BloodDonation from './pages/donations/BloodDonation';
 import TimeDonation from './pages/donations/TimeDonation';
 import ClotheDonation from './pages/donations/ClotheDonation';
@@ -18,7 +20,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
-const AppTabNavigator = createBottomTabNavigator(
+const AppTabNavigatorPerson = createBottomTabNavigator(
   {
     'Notificações': {
       screen: Info,
@@ -53,13 +55,45 @@ const AppTabNavigator = createBottomTabNavigator(
   }
 );
 
+const AppTabNavigatorONG = createBottomTabNavigator(
+  {
+    'Meus Anúncios': {
+      screen: MyAd,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="info" color={tintColor} size={15} />
+      },
+    },
+    'Fazer Anúncio': {
+      screen: Ad,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="donate" color={tintColor} size={15} />
+      }
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      tabBarOptions: {
+        activeTintColor: "#00008B",
+        inactiveTintColor: "#000000",
+        activeBackgroundColor: "#6495ED",
+        inactiveBackgroundColor: "#A9A9A9",
+        style: {
+          height: 50,
+        },
+        labelStyle: {
+          fontSize: 15,
+        },
+      },
+    }
+  }
+);
+
 const AppNavigator = createStackNavigator(
   {
     'Index': {
       screen: Index,
-    },
-    'Enter': {
-      screen: Enter,
     },
     'Register': {
       screen: Register,
@@ -70,8 +104,11 @@ const AppNavigator = createStackNavigator(
     'RegisterONG': {
       screen: RegisterONG,
     },
-    'Main': {
-      screen: AppTabNavigator
+    'MainPerson': {
+      screen: AppTabNavigatorPerson
+    },
+    'MainONG': {
+      screen: AppTabNavigatorONG
     },
     'BloodDonation': {
       screen: BloodDonation

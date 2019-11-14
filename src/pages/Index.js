@@ -9,6 +9,7 @@ import firebase from '../database/firebase'
 class Index extends React.Component {
     constructor(props) {
         super(props);
+        this.ref = firebase.firestore().collection('ONG');
         this.state = {
             mail: '',
             pass: '',
@@ -27,6 +28,30 @@ class Index extends React.Component {
         this.setState({
             pass: value
         })
+    }
+
+    redirectUser() {
+        const { navigation } = this.props
+        var user = firebase.auth().currentUser;
+
+        if (user) {
+            const id = user.uid;
+
+            this.ref.get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    if(doc.id === id) {
+                        //console.log("É ONG")
+                        navigation.navigate("MainONG");
+                    }else {
+                        //console.log("É voluntário")
+                        navigation.navigate("MainPerson");
+                    }
+                })
+            })
+
+        } else {
+            console.log("Usuário não está logado")
+        }
     }
 
     renderButtonEnter() {
@@ -66,13 +91,12 @@ class Index extends React.Component {
     tryEnter() {
         this.setState({ isLoading: true })
         const { mail, pass } = this.state
-        const { navigation } = this.props
 
         //promisse
         firebase.auth().signInWithEmailAndPassword(mail, pass)
             .then(user => {
                 this.setState({ message: 'Sucesso' })
-                navigation.navigate("Main");
+                this.redirectUser();
             })
             .catch(error => {
                 if (error.code === 'auth/user-not-found') {

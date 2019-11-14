@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import BottomNavigation, { IconTab, Badge } from 'react-native-material-bottom-navigation'
 import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 
-class Main extends React.Component {
+class MainONG extends React.Component {
     state = {
         activeTab: 'info'
     }
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Main
+export default MainONG

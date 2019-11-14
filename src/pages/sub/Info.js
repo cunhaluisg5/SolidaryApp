@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { Card } from 'react-native-elements';
-import HeaderMenu from '../components/HeaderMenu';
-import { View } from '../styles/style';
+import HeaderMenu from '../../components/HeaderMenu';
+import { View } from '../../styles/style';
 
 class Info extends React.Component {
     constructor(props) {

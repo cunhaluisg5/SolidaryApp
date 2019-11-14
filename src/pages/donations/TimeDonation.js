@@ -27,10 +27,11 @@ class TimeDonation extends React.Component {
     onContentUpdate = (querySnapshot) => {
         const contents = [];
         querySnapshot.forEach((doc) => {
-            const { nome, texto } = doc.data();
+            const { idONG, nome, texto } = doc.data();
             contents.push({
                 id: doc.id,
                 contents,
+                idONG,
                 nome,
                 texto,
             });
@@ -117,7 +118,6 @@ class TimeDonation extends React.Component {
         const { contents } = this.state;
 
         { this.renderActivityIndicator() }
-        { console.log("Tamanho: " + contents.length) }
         if (contents.length === 0) {
             return (
                 <View>

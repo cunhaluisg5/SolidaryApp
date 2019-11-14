@@ -1,8 +1,8 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
-import HeaderMenu from '../components/HeaderMenu';
-import { View } from '../styles/style';
+import HeaderMenu from '../../components/HeaderMenu';
+import { View } from '../../styles/style';
 
 class Donate extends React.Component {
     constructor(props) {
