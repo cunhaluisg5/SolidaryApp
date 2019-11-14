@@ -1,16 +1,55 @@
 import React from 'react';
-import { StyleSheet, View, Text, Linking } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, Linking } from 'react-native';
 import { Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import email from 'react-native-email';
 import HeaderMenu from '../../components/HeaderMenu';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Firebase from '../../database/firebase';
 
 class TimeDonation extends React.Component {
 
     constructor(props) {
         super(props);
+        this.ref = Firebase.firestore().collection('ONGTempo');
+        this.unsubscribe = null;
+        this.state = {
+            isLoading: true,
+            contents: []
+        };
+    }
+
+    componentDidMount() {
+        this.unsubscribe = this.ref.onSnapshot(this.onContentUpdate);
+    }
+
+    onContentUpdate = (querySnapshot) => {
+        const contents = [];
+        querySnapshot.forEach((doc) => {
+            const { nome, texto } = doc.data();
+            contents.push({
+                id: doc.id,
+                contents,
+                nome,
+                texto,
+            });
+        });
+        this.setState({
+            contents,
+            isLoading: false,
+        });
+    }
+
+
+    renderActivityIndicator() {
+        if (this.state.isLoading) {
+            return (
+                <View>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                </View>
+            )
+        }
     }
 
     sendPhone = (phone) => {
@@ -75,24 +114,41 @@ class TimeDonation extends React.Component {
     }
 
     render() {
+        const { contents } = this.state;
+
+        { this.renderActivityIndicator() }
+        { console.log("Tamanho: " + contents.length) }
+        if (contents.length === 0) {
+            return (
+                <View>
+                    <Text>{this.state.notFound}</Text>
+                    {console.log("Erro ao listar")}
+                </View>
+            )
+        }
+
         return (
             <View style={styles.container}>
-                <HeaderMenu text = 'Tempo' color = '#1E90FF'/>
-                <Card title="Exemplo JF"
-                    titleStyle={{ backgroundColor: '#ADD8E6' }}
-                    containerStyle={{ backgroundColor: '#F0F8FF' }}>
-                    <Text>
-                        Rua Exemplo,
-                        S/N - Exemplo,
-                        Exemplo - MG,
-                        00000-000
-                    </Text>
-                    <View style={styles.button}>
-                        {this.renderButtonPhone()}
-                        {this.renderButtonMail()}
-                        {this.renderButtonWhatsApp()}
-                    </View>
-                </Card>
+                <HeaderMenu text="Tempo" color='#1E90FF' />
+                {
+                    contents.map((u, i) => {
+                        return (
+                            <Card title={u.nome}
+                                titleStyle={{ backgroundColor: '#ADD8E6' }}
+                                containerStyle={{ backgroundColor: '#F0F8FF' }}>
+                                {
+                                    <View key={i}>
+                                        <Text>{u.texto}</Text>
+                                        <View style={styles.button}>
+                                            {this.renderButtonPhone()}
+                                            {this.renderButtonMail()}
+                                        </View>
+                                    </View>
+                                }
+                            </Card>
+                        );
+                    })
+                }
             </View>
         );
     }
@@ -115,7 +171,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 25, 
+        fontSize: 25,
     },
     text: {
         flex: 1,

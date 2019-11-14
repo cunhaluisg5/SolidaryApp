@@ -90,7 +90,6 @@ class BloodDonation extends React.Component {
                     <View style={styles.button}>
                         {this.renderButtonPhone()}
                         {this.renderButtonMail()}
-                        {this.renderButtonWhatsApp()}
                     </View>
                 </Card>
                 <Card title="HemoCentro BH"

@@ -13,7 +13,6 @@ class RegisterONG extends React.Component {
             nome: '',
             telefone: '',
             email: '',
-            conta: '',
             usuario: '',
             senha: ''
         }
@@ -31,27 +30,28 @@ class RegisterONG extends React.Component {
             title="Cadastrar"
             titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{ backgroundColor: '#00BFFF' }}
-            onPress={() => this.tryRegister()} />
+            onPress={this.tryRegister} />
     }
 
-    tryRegister() {
-        const ref = firebase.firestore().collection('ONG');
-        ref.add({
-            cnpj: this.state.cnpj,
-            nome: this.state.nome,
-            telefone: this.state.telefone,
-            email: this.state.email,
-            conta: this.state.conta,
-            usuario: this.state.usuario,
-            senha: this.state.senha
-
-        }).then((docRef) => {
-            this.props.navigation.navigate("Main");
+    tryRegister = () => {
+        const { cnpj, nome, telefone, email, usuario, senha } = this.state;
+        const { navigation } = this.props;
+        firebase.auth().createUserWithEmailAndPassword(email.trim(), senha)
+        .then((user) => {
+            const userID = user.user.uid;
+            const userRef = firebase.firestore().collection('ONG')
+            .doc(userID);
+            userRef.set({
+                cnpj,
+                nome,
+                telefone,
+                email,
+                usuario
+            });
+            navigation.navigate("Index");
         }).catch((error) => {
-            console.log("Erro ao adicionar o doc");
-        });
-
-        console.log("Valor CPF: ", this.state.nome, "valor Nome: ", this.state.cpf)
+            console.log("Erro ao adicionar o doc ", error);
+        })
     }
 
     renderScreen() {
@@ -79,10 +79,6 @@ class RegisterONG extends React.Component {
                 <TextInput style={styles.textInput}
                     placeholder="user@email.com"
                     onChangeText={(value) => this.setState({ email: value })} />
-                <Text>Conta: </Text>
-                <TextInput style={styles.textInput}
-                    placeholder="alguma coisa"
-                    onChangeText={(value) => this.setState({ conta: value })} />
                 <Text>Usuário: </Text>
                 <TextInput style={styles.textInput}
                     placeholder="user"
