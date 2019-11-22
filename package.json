@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "cpf-cnpj-validator": "^0.1.0",
     "expo": "^34.0.1",
     "firebase": "^7.2.3",
     "react": "16.8.3",

@@ -11,8 +11,8 @@ class Index extends React.Component {
         super(props);
         this.ref = firebase.firestore().collection('ONG');
         this.state = {
-            mail: '',
-            pass: '',
+            mail: 'teste@teste.com',
+            pass: '123456',
             message: '',
             isLoading: false
         }
@@ -36,7 +36,7 @@ class Index extends React.Component {
 
         if (user) {
             const id = user.uid;
-
+            
             this.ref.get().then((snapshot) => {
                 snapshot.docs.forEach(doc => {
                     if(doc.id === id) {

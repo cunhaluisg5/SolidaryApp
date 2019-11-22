@@ -11,22 +11,22 @@ class Donate extends React.Component {
 
     trySeachTimeDonation() {
         const { navigation } = this.props
-        navigation.navigate("TimeDonation")
+        navigation.navigate("ContentPageDonation", {nomeColecao:'TimeDonation', titulo: 'Tempo', cor: '#1E90FF'})
     }
 
     trySeachBloodDonation() {
         const { navigation } = this.props
-        navigation.navigate("BloodDonation")
+        navigation.navigate("ContentPageDonation", {nomeColecao: 'BloodDonation', titulo: 'Sangue', cor: '#CD0000'})
     }
 
     trySeachClotheDonation() {
         const { navigation } = this.props
-        navigation.navigate("ClotheDonation")
+        navigation.navigate("ContentPageDonation", {nomeColecao: 'ClotheDonation', titulo: 'Roupa', cor: '#DAA520'})
     }
 
     trySeachMoneyDonation() {
         const { navigation } = this.props
-        navigation.navigate("MoneyDonation")
+        navigation.navigate("ContentPageDonation", {nomeColecao: 'MoneyDonation', titulo: 'Dinheiro', cor: '#2E8B57'})
     }
 
     renderButton0() {

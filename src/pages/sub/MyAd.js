@@ -12,8 +12,8 @@ class MyAd extends React.Component {
     render() {
         return (
             <View>
-                <HeaderMenu text = 'Notificações' color = '#3D6DCC'/>
-                <Card title="Instituições vistas no último mês"
+                <HeaderMenu text = 'Minhas Campanhas' color = '#3D6DCC'/>
+                <Card title="Últimas Campanhas"
                       titleStyle={{backgroundColor: '#ADD8E6'}}
                       containerStyle={{backgroundColor: '#F0F8FF'}}>
                     <Text>

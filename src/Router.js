@@ -8,10 +8,9 @@ import Info from './pages/sub/Info';
 import Donate from './pages/sub/Donate';
 import MyAd from './pages/sub/MyAd';
 import Ad from './pages/sub/Ad';
-import BloodDonation from './pages/donations/BloodDonation';
-import TimeDonation from './pages/donations/TimeDonation';
-import ClotheDonation from './pages/donations/ClotheDonation';
-import MoneyDonation from './pages/donations/MoneyDonation';
+import ContentPageDonation from './pages/donations/ContentPageDonation';
+
+import ONGDetail from './components/ONGDetail';
 
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
@@ -57,7 +56,7 @@ const AppTabNavigatorPerson = createBottomTabNavigator(
 
 const AppTabNavigatorONG = createBottomTabNavigator(
   {
-    'Meus Anúncios': {
+    'Minhas Campanhas': {
       screen: MyAd,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) =>
@@ -110,17 +109,14 @@ const AppNavigator = createStackNavigator(
     'MainONG': {
       screen: AppTabNavigatorONG
     },
-    'BloodDonation': {
-      screen: BloodDonation
+    'ContentPageDonation': {
+      screen: ContentPageDonation
     },
-    'TimeDonation': {
-      screen: TimeDonation
-    },
-    'ClotheDonation': {
-      screen: ClotheDonation
-    },
-    'MoneyDonation': {
-      screen: MoneyDonation
+    'ONGDetail' : {
+      screen: ONGDetail,
+      navigationOptions: {
+        title: "Detalhes"
+      }
     }
   },
   {

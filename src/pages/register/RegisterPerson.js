@@ -34,6 +34,17 @@ class RegisterPerson extends React.Component {
     }
 
     tryRegister = () => {
+        /*const cpfSemPonto = this.state.cpf.replace(".", "").replace(".", "").replace("-", "");
+        console.log("cpfSemPonto ", cpfSemPonto); 
+
+        const { cpf } = require('cpf-cnpj-validator');
+        const cpfValido =cpf.isValid(cpfSemPonto);
+        console.log(cpfValido)*/
+
+
+
+
+
         const { cpf, nome, telefone, email, usuario, senha } = this.state;
         const { navigation } = this.props;
         firebase.auth().createUserWithEmailAndPassword(email.trim(), senha)
