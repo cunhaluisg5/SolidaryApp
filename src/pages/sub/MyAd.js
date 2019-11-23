@@ -1,28 +1,158 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Card } from 'react-native-elements';
+import { ScrollView, StyleSheet } from 'react-native';
 import HeaderMenu from '../../components/HeaderMenu';
 import { View } from '../../styles/style';
+import { Dropdown } from 'react-native-material-dropdown';
+import Firebase from '../../database/firebase';
+import ContentItem from '../../components/ContentItem';
 
 class MyAd extends React.Component {
     constructor(props) {
         super(props);
+        this.unsubscribe = null;
+        this.database;
+        this.state = {
+            contents: [],
+            data: [{
+                value: 'Tempo',
+            }, {
+                value: 'Sangue',
+            }, {
+                value: 'Roupa',
+            }, {
+                value: 'Dinheiro',
+            }],
+            value: 'Tempo',
+        }
+    }
+
+    componentDidMount() {
+        this.init();
+    }
+
+    onContentUpdate = (querySnapshot) => {
+        const contents = [];
+        console.log("Valor: ", this.state.value)
+        querySnapshot.forEach((doc) => {
+            const { nome, texto } = doc.data();
+            contents.push({
+                id: doc.id,
+                contents,
+                nome,
+                texto,
+            });
+        });
+        this.setState({
+            contents,
+            isLoading: false,
+        });
+    }
+
+    init(){
+        const { uid } = Firebase.auth().currentUser;
+        const ref = Firebase.firestore().collection(this.returnCollection()).where("idONG", "==", uid);
+        this.unsubscribe = ref.onSnapshot(this.onContentUpdate);
+    }
+
+    returnCollection() {
+        switch (this.state.value) {
+            case 'Tempo':
+                return 'TimeDonation';
+                break;
+            case 'Sangue':
+                return 'BloodDonation';
+                break;
+            case 'Roupa':
+                return 'ClotheDonation';
+                break;
+            case 'Dinheiro':
+                return 'MoneyDonation';
+                break;
+        }
     }
 
     render() {
+        const { contents } = this.state;
+
+        const items = contents.map((content, index) =>
+            <ContentItem key={index} nome={content.nome} texto={content.texto} onPress={() => {
+                this.props.navigation.navigate('ONGDetail', content);
+            }}
+            />
+        )
         return (
             <View>
-                <HeaderMenu text = 'Minhas Campanhas' color = '#3D6DCC'/>
-                <Card title="Últimas Campanhas"
-                      titleStyle={{backgroundColor: '#ADD8E6'}}
-                      containerStyle={{backgroundColor: '#F0F8FF'}}>
-                    <Text>
-                        Teste
-                    </Text>
-                </Card>
+                <HeaderMenu text='Minhas Campanhas' color='#3D6DCC' />
+                <View style={styles.drop}>
+                    <Dropdown
+                        itemTextStyle={styles.dropdown}
+                        label='Tipo de Anúncio'
+                        baseColor='#6A5ACD'
+                        value={this.state.value}
+                        data={this.state.data}
+                        onChangeText={(value) => { this.setState({ value }); this.init() }}
+                    />
+                </View>
+                <ScrollView>
+                    {items}
+                </ScrollView>
             </View>
-        );
+        )
     }
 }
+
+const styles = StyleSheet.create({
+    dropdown: {
+        textAlign: "center"
+    },
+    drop: {
+        marginLeft: 20,
+        marginRight: 20
+    },
+    checkbox: {
+        flexDirection: "row",
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    check: {
+        padding: 0
+    },
+    button: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 20,
+        fontSize: 20,
+        marginBottom: 20
+    },
+    nomeONG: {
+        fontSize: 16,
+        textAlign: "center"
+    },
+    text: {
+        textAlign: "center"
+    },
+    textInput: {
+        borderColor: 'black',
+        borderBottomWidth: 1,
+        fontSize: 20,
+        paddingRight: 5,
+        paddingLeft: 5,
+        textAlign: 'center',
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 10
+    },
+    containerText: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 50
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#FFF',
+    },
+});
 
 export default MyAd;
