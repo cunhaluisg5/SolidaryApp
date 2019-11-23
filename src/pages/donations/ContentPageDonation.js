@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, View, Text, Linking } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, Linking, ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
@@ -139,10 +139,10 @@ class ContentPageDonation extends React.Component {
 
         return (
 
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <HeaderMenu text={titulo} color={cor} />
                 {items}
-            </View>
+            </ScrollView>
         );
     }
 }

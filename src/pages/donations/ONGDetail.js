@@ -1,9 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Card } from 'react-native-elements';
-import { Text } from "../styles/style";
-import HeaderMenu from '../components/HeaderMenu';
-import Firebase from '../database/firebase';
+import { Text } from "../../styles/style";
+import HeaderMenu from '../../components/HeaderMenu';
+import Firebase from '../../database/firebase';
 
 class ONGDetail extends React.Component {
 

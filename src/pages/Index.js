@@ -11,7 +11,7 @@ class Index extends React.Component {
         super(props);
         this.ref = firebase.firestore().collection('ONG');
         this.state = {
-            mail: 'teste@teste.com',
+            mail: 'ong@ong.com',
             pass: '123456',
             message: '',
             isLoading: false

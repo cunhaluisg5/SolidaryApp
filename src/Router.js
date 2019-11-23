@@ -10,7 +10,7 @@ import MyAd from './pages/sub/MyAd';
 import Ad from './pages/sub/Ad';
 import ContentPageDonation from './pages/donations/ContentPageDonation';
 
-import ONGDetail from './components/ONGDetail';
+import ONGDetail from './pages/donations/ONGDetail';
 
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
