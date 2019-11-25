@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Text } from "../../styles/style";
 import HeaderMenu from '../../components/HeaderMenu';
@@ -15,7 +15,7 @@ class ONGDetail extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         Firebase.firestore().collection('ONG').get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -33,18 +33,21 @@ class ONGDetail extends React.Component {
 
     render() {
         const { nome, cnpj, email, telefone } = this.state.content;
-        const {texto} = this.props.navigation.state.params.content
+        const { texto } = this.props.navigation.state.params.content
         const titulo = this.props.navigation.state.params.titulo
         const cor = this.props.navigation.state.params.cor
 
         return (
             <View>
                 <HeaderMenu text={titulo} color={cor} />
-                <Text>{nome}</Text>
-                <Text>{cnpj}</Text>
-                <Text>{email}</Text>
-                <Text>{telefone}</Text>
-                <Text>{texto}</Text>
+                <Card title={nome}
+                    titleStyle={{ backgroundColor: cor, color: '#FFFFFF' }}
+                    containerStyle={{ backgroundColor: cor }}>
+                    <Text style={styles.text}>CNPJ: {cnpj}</Text>
+                    <Text style={styles.text}>Email: {email}</Text>
+                    <Text style={styles.text}>Telefone: {telefone}</Text>
+                    <Text style={styles.text}>Campanha: {texto}</Text>
+                </Card>
             </View>
         );
     }
@@ -55,11 +58,7 @@ export default ONGDetail;
 
 
 const styles = StyleSheet.create({
-    line: {
-        height: 60,
-        borderBottomWidth: 1,
-        borderBottomColor: 'black',
-        flexDirection: 'row',
-        alignItems: 'center'
+    text: {
+        color: '#FFFFFF'
     },
 })
