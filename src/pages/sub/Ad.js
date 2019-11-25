@@ -11,7 +11,6 @@ class Ad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            nome: '',
             texto: '',
             isLoading: false,
             data: [{
@@ -33,7 +32,6 @@ class Ad extends React.Component {
         const { navigation } = this.props;
         saveRef.add({
             idONG: uid,
-            nome: this.state.nome,
             texto: this.state.texto,
         }).then((docRef) => {
             console.log('Adicionou')
@@ -98,10 +96,6 @@ class Ad extends React.Component {
                     <Card title="Anunciar"
                         titleStyle={{ backgroundColor: '#ADD8E6' }}
                         containerStyle={{ backgroundColor: '#F0F8FF' }}>
-                        <Text style={styles.text}>Nome da ONG</Text>
-                        <TextInput style={styles.textInput, styles.nomeONG}
-                            placeholder="Este nome aparecerá no anúncio."
-                            onChangeText={(value) => this.setState({ nome: value })} />
                         <TextInput style={styles.textInput}
                             multiline={true}
                             numberOfLines={6}

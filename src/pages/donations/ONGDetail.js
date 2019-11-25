@@ -10,15 +10,16 @@ class ONGDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: {}
+            content: {},
+            id: this.props.navigation.state.params.content.id
         }
     }
 
-    searchONG(idONG) {
-        const ref = Firebase.firestore().collection('ONG').get()
+    componentDidMount(){
+        Firebase.firestore().collection('ONG').get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    if (doc.id === idONG) {
+                    if (doc.id === this.state.id) {
                         this.setState({
                             content: doc.data()
                         });
@@ -28,17 +29,17 @@ class ONGDetail extends React.Component {
             .catch(function (error) {
                 console.log("Erro ao buscar documento: ", error);
             });
-
     }
 
     render() {
-        const { idONG, nome, texto } = this.props.navigation.state.params;
-        this.searchONG(idONG);
-        const { cnpj, email, telefone } = this.state.content;
+        const { nome, cnpj, email, telefone } = this.state.content;
+        const {texto} = this.props.navigation.state.params.content
+        const titulo = this.props.navigation.state.params.titulo
+        const cor = this.props.navigation.state.params.cor
 
         return (
             <View>
-                <HeaderMenu text="" color="#000000" />
+                <HeaderMenu text={titulo} color={cor} />
                 <Text>{nome}</Text>
                 <Text>{cnpj}</Text>
                 <Text>{email}</Text>

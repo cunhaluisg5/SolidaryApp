@@ -5,16 +5,16 @@ import { Text } from "../styles/style";
 
 
 const ContentItem = (props) => {
-    const { nome, texto, onPress } = props;
+    const { cor, nome, texto, onPress } = props;
 
     return (
         <TouchableOpacity onPress={() => {
             console.log('Clicou em mim', nome);
             onPress();
         }}>
-            <Card title={nome}
+            <Card
                 titleStyle={{ backgroundColor: '#ADD8E6' }}
-                containerStyle={{ backgroundColor: '#F0F8FF' }}>
+                containerStyle={{ backgroundColor: cor}}>
                 {
                     <View>
                         <Text>{texto}</Text>

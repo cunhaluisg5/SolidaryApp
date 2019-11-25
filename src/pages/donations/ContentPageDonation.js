@@ -28,12 +28,11 @@ class ContentPageDonation extends React.Component {
     onContentUpdate = (querySnapshot) => {
         const contents = [];
         querySnapshot.forEach((doc) => {
-            const { idONG, nome, texto } = doc.data();
+            const { idONG, texto } = doc.data();
             contents.push({
                 id: doc.id,
                 contents,
-                idONG,
-                nome,
+                id: idONG,
                 texto,
             });
         });
@@ -129,10 +128,8 @@ class ContentPageDonation extends React.Component {
             )
         }
         const items = contents.map((content, index) =>
-            <ContentItem key={index} nome={content.nome} texto={content.texto} onPress={() => {
-                this.props.navigation.navigate('ONGDetail', /*{
-                    id: `${JSON.stringify(content.id)}`
-                }*/ content);
+            <ContentItem key={index} cor={cor} texto={content.texto} onPress={() => {
+                this.props.navigation.navigate('ONGDetail', {content, titulo, cor});
             }}
             />
         )        

@@ -9,6 +9,7 @@ import Donate from './pages/sub/Donate';
 import MyAd from './pages/sub/MyAd';
 import Ad from './pages/sub/Ad';
 import ContentPageDonation from './pages/donations/ContentPageDonation';
+import AdEdit from './pages/AdEdit';
 
 import ONGDetail from './pages/donations/ONGDetail';
 
@@ -116,6 +117,12 @@ const AppNavigator = createStackNavigator(
       screen: ONGDetail,
       navigationOptions: {
         title: "Detalhes"
+      }
+    },
+    'AdEdit': {
+      screen: AdEdit,
+      navigationOptions: {
+        title: "Edição"
       }
     }
   },

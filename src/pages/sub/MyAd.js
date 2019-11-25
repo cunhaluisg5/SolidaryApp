@@ -10,7 +10,6 @@ class MyAd extends React.Component {
     constructor(props) {
         super(props);
         this.unsubscribe = null;
-        this.database;
         this.state = {
             contents: [],
             data: [{
@@ -32,13 +31,11 @@ class MyAd extends React.Component {
 
     onContentUpdate = (querySnapshot) => {
         const contents = [];
-        console.log("Valor: ", this.state.value)
         querySnapshot.forEach((doc) => {
-            const { nome, texto } = doc.data();
+            const { texto } = doc.data();
             contents.push({
                 id: doc.id,
                 contents,
-                nome,
                 texto,
             });
         });
@@ -71,12 +68,31 @@ class MyAd extends React.Component {
         }
     }
 
+    returnColor() {
+        switch (this.state.value) {
+            case 'Tempo':
+                return '#1E90FF';
+                break;
+            case 'Sangue':
+                return '#CD0000';
+                break;
+            case 'Roupa':
+                return '#DAA520';
+                break;
+            case 'Dinheiro':
+                return '#2E8B57';
+                break;
+        }
+    }
+
     render() {
         const { contents } = this.state;
+        const cor = this.returnColor();
+        const colecao = this.returnCollection();
 
         const items = contents.map((content, index) =>
-            <ContentItem key={index} nome={content.nome} texto={content.texto} onPress={() => {
-                this.props.navigation.navigate('ONGDetail', content);
+            <ContentItem key={index} cor={cor} nome={content.nome} texto={content.texto} onPress={() => {
+                this.props.navigation.navigate('AdEdit', {content, colecao: colecao, cor: cor});
             }}
             />
         )
