@@ -98,7 +98,7 @@ class MyAd extends React.Component {
         )
         return (
             <View>
-                <HeaderMenu text='Minhas Campanhas' color='#3D6DCC' />
+                <HeaderMenu text='Campanhas' color='#3D6DCC' />
                 <View style={styles.drop}>
                     <Dropdown
                         itemTextStyle={styles.dropdown}

@@ -4,7 +4,7 @@ import MainONG from './pages/main/MainONG';
 import Register from './pages/register/Register';
 import RegisterPerson from './pages/register/RegisterPerson';
 import RegisterONG from './pages/register/RegisterONG';
-import Info from './pages/sub/Info';
+import Perfil from './pages/sub/Perfil';
 import Donate from './pages/sub/Donate';
 import MyAd from './pages/sub/MyAd';
 import Ad from './pages/sub/Ad';
@@ -22,72 +22,113 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const AppTabNavigatorPerson = createBottomTabNavigator(
   {
-    'Notificações': {
-      screen: Info,
+    'Perfil': {
+      screen: Perfil,
       navigationOptions: {
+        tabBarOptions: {
+          activeTintColor: "#00008B",
+          inactiveTintColor: "#000000",
+          activeBackgroundColor: "#6495ED",
+          inactiveBackgroundColor: "#A9A9A9",
+          style: {
+            height: 50,
+          },
+          labelStyle: {
+            fontSize: 15,
+          },
+        },
         tabBarIcon: ({ tintColor }) =>
-          <Icon name="info" color={tintColor} size={15} />
+          <Icon name="user" color={tintColor} size={15} />
       },
     },
-    'Doação': {
+    'Doar': {
       screen: Donate,
       navigationOptions: {
+        tabBarOptions: {
+          activeTintColor: "#00008B",
+          inactiveTintColor: "#000000",
+          activeBackgroundColor: "#6495ED",
+          inactiveBackgroundColor: "#A9A9A9",
+          style: {
+            height: 50,
+          },
+          labelStyle: {
+            fontSize: 15,
+          },
+        },
         tabBarIcon: ({ tintColor }) =>
-          <Icon name="donate" color={tintColor} size={15} />
+          <Icon name="handshake" color={tintColor} size={15} />
       }
     },
   },
   {
-    defaultNavigationOptions: {
-      tabBarOptions: {
-        activeTintColor: "#00008B",
-        inactiveTintColor: "#000000",
-        activeBackgroundColor: "#6495ED",
-        inactiveBackgroundColor: "#A9A9A9",
-        style: {
-          height: 50,
-        },
-        labelStyle: {
-          fontSize: 15,
-        },
-      },
-    }
-  }
+    initialRouteName: 'Doar'
+  },
 );
 
 const AppTabNavigatorONG = createBottomTabNavigator(
   {
-    'Minhas Campanhas': {
-      screen: MyAd,
+    'Perfil': {
+      screen: Perfil,
       navigationOptions: {
+        tabBarOptions: {
+          activeTintColor: "#00008B",
+          inactiveTintColor: "#000000",
+          activeBackgroundColor: "#6495ED",
+          inactiveBackgroundColor: "#A9A9A9",
+          style: {
+            height: 50,
+          },
+          labelStyle: {
+            fontSize: 15,
+          },
+        },
         tabBarIcon: ({ tintColor }) =>
-          <Icon name="info" color={tintColor} size={15} />
+          <Icon name="user" color={tintColor} size={15} />
       },
     },
-    'Fazer Anúncio': {
+    'Anúncio': {
       screen: Ad,
       navigationOptions: {
+        tabBarOptions: {
+          activeTintColor: "#00008B",
+          inactiveTintColor: "#000000",
+          activeBackgroundColor: "#6495ED",
+          inactiveBackgroundColor: "#A9A9A9",
+          style: {
+            height: 50,
+          },
+          labelStyle: {
+            fontSize: 15,
+          },
+        },
         tabBarIcon: ({ tintColor }) =>
-          <Icon name="donate" color={tintColor} size={15} />
+          <Icon name="info" color={tintColor} size={15} />
       }
+    },
+    'Campanhas': {
+      screen: MyAd,
+      navigationOptions: {
+        tabBarOptions: {
+          activeTintColor: "#00008B",
+          inactiveTintColor: "#000000",
+          activeBackgroundColor: "#6495ED",
+          inactiveBackgroundColor: "#A9A9A9",
+          style: {
+            height: 50,
+          },
+          labelStyle: {
+            fontSize: 15,
+          },
+        },
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="hands-helping" color={tintColor} size={15} />
+      },
     },
   },
   {
-    defaultNavigationOptions: {
-      tabBarOptions: {
-        activeTintColor: "#00008B",
-        inactiveTintColor: "#000000",
-        activeBackgroundColor: "#6495ED",
-        inactiveBackgroundColor: "#A9A9A9",
-        style: {
-          height: 50,
-        },
-        labelStyle: {
-          fontSize: 15,
-        },
-      },
-    }
-  }
+    initialRouteName: 'Anúncio'
+  },
 );
 
 const AppNavigator = createStackNavigator(
@@ -113,7 +154,7 @@ const AppNavigator = createStackNavigator(
     'ContentPageDonation': {
       screen: ContentPageDonation
     },
-    'ONGDetail' : {
+    'ONGDetail': {
       screen: ONGDetail,
       navigationOptions: {
         title: "Detalhes"

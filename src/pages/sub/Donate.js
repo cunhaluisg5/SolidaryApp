@@ -68,7 +68,7 @@ class Donate extends React.Component {
     render() {
         return (
             <View>
-                <HeaderMenu text = 'Doação' color = '#3D6DCC'/>
+                <HeaderMenu text = 'Doar' color = '#3D6DCC'/>
                 <View flexDirection='column' display='flex' marginTop='40px'>
                     <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton0()}

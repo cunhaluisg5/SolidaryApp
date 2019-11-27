@@ -81,7 +81,7 @@ class Ad extends React.Component {
     renderRegister() {
         return (
             <View>
-                <HeaderMenu text='Fazer Anúncio' color='#3D6DCC' />
+                <HeaderMenu text='Anúncio' color='#3D6DCC' />
                 <View style={styles.drop}>
                     <Dropdown
                         itemTextStyle={styles.dropdown}
