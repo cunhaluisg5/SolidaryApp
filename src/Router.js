@@ -1,12 +1,11 @@
 import Index from './pages/Index';
-
 import MainONG from './pages/main/MainONG';
 import MainPerson from './pages/main/MainPerson';
 import Register from './pages/register/Register';
 import RegisterPerson from './pages/register/RegisterPerson';
 import RegisterONG from './pages/register/RegisterONG';
 import ContentPageDonation from './pages/donations/ContentPageDonation';
-import AdEdit from './pages/AdEdit';
+import AdEdit from './pages/sub/AdEdit';
 import ONGDetail from './pages/donations/ONGDetail';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';

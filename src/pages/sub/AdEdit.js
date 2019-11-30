@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native';
 import { Card, Button } from 'react-native-elements';
-import HeaderMenu from '../components/HeaderMenu';
-import Firebase from '../database/firebase';
+import HeaderMenu from '../../components/HeaderMenu';
+import Firebase from '../../database/firebase';
 
 class AdEdit extends React.Component {
 
@@ -82,6 +82,14 @@ class AdEdit extends React.Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <View style={styles.loading}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                    <Text>Aguarde, carregando...</Text>
+                </View>
+            )
+        }
         const cor = this.props.navigation.state.params.cor
         return (
             <ScrollView>
@@ -97,11 +105,11 @@ class AdEdit extends React.Component {
                 </Card>
                 <View style={styles.containerButton}>
                     <Button
-                        buttonStyle={{marginTop: 10}}
+                        buttonStyle={{ marginTop: 10 }}
                         title='Editar'
                         onPress={() => { this.tryEdit(); }} />
                     <Button
-                        buttonStyle={{marginTop: 10, backgroundColor: '#CD0000'}}
+                        buttonStyle={{ marginTop: 10, backgroundColor: '#CD0000' }}
                         title='Apagar'
                         onPress={() => { this.tryDelete(); }} />
                 </View>
@@ -115,6 +123,11 @@ export default AdEdit;
 
 
 const styles = StyleSheet.create({
+    loading: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     containerButton: {
         marginLeft: 20,
         marginRight: 20,

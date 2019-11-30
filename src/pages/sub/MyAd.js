@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, ActivityIndicator, Text } from 'react-native';
 import HeaderMenu from '../../components/HeaderMenu';
 import { View } from '../../styles/style';
 import { Dropdown } from 'react-native-material-dropdown';
@@ -11,6 +11,7 @@ class MyAd extends React.Component {
         super(props);
         this.unsubscribe = null;
         this.state = {
+            isLoading: true,
             contents: [],
             data: [{
                 value: 'Tempo',
@@ -45,7 +46,7 @@ class MyAd extends React.Component {
         });
     }
 
-    init(){
+    init() {
         const { uid } = Firebase.auth().currentUser;
         const ref = Firebase.firestore().collection(this.returnCollection()).where("idONG", "==", uid);
         this.unsubscribe = ref.onSnapshot(this.onContentUpdate);
@@ -86,15 +87,24 @@ class MyAd extends React.Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <View style={styles.loading}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                    <Text>Aguarde, carregando...</Text>
+                </View>
+            )
+        }
+
         const { contents } = this.state;
         const cor = this.returnColor();
         const colecao = this.returnCollection();
 
         const items = contents.map((content, index) =>
             <ContentItem key={index} cor={cor} nome={content.nome} texto={content.texto} onPress={() => {
-                this.props.navigation.navigate('AdEdit', {content, colecao: colecao, cor: cor});
+                this.props.navigation.navigate('AdEdit', { content, colecao: colecao, cor: cor });
             }}
-            />
+            />,
         )
         return (
             <View>
@@ -118,57 +128,18 @@ class MyAd extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    loading: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     dropdown: {
         textAlign: "center"
     },
     drop: {
         marginLeft: 20,
         marginRight: 20
-    },
-    checkbox: {
-        flexDirection: "row",
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    check: {
-        padding: 0
-    },
-    button: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 20,
-        fontSize: 20,
-        marginBottom: 20
-    },
-    nomeONG: {
-        fontSize: 16,
-        textAlign: "center"
-    },
-    text: {
-        textAlign: "center"
-    },
-    textInput: {
-        borderColor: 'black',
-        borderBottomWidth: 1,
-        fontSize: 20,
-        paddingRight: 5,
-        paddingLeft: 5,
-        textAlign: 'center',
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 10
-    },
-    containerText: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 50
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#FFF',
-    },
+    }
 });
 
 export default MyAd;

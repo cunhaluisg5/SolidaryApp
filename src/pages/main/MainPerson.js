@@ -11,22 +11,22 @@ class MainPerson extends React.Component {
 
     trySeachTimeDonation() {
         const { navigation } = this.props
-        navigation.navigate("ContentPageDonation", {nomeColecao:'TimeDonation', titulo: 'Tempo', cor: '#1E90FF'})
+        navigation.navigate("ContentPageDonation", { nomeColecao: 'TimeDonation', titulo: 'Tempo', cor: '#1E90FF' })
     }
 
     trySeachBloodDonation() {
         const { navigation } = this.props
-        navigation.navigate("ContentPageDonation", {nomeColecao: 'BloodDonation', titulo: 'Sangue', cor: '#CD0000'})
+        navigation.navigate("ContentPageDonation", { nomeColecao: 'BloodDonation', titulo: 'Sangue', cor: '#CD0000' })
     }
 
     trySeachClotheDonation() {
         const { navigation } = this.props
-        navigation.navigate("ContentPageDonation", {nomeColecao: 'ClotheDonation', titulo: 'Roupa', cor: '#DAA520'})
+        navigation.navigate("ContentPageDonation", { nomeColecao: 'ClotheDonation', titulo: 'Roupa', cor: '#DAA520' })
     }
 
     trySeachMoneyDonation() {
         const { navigation } = this.props
-        navigation.navigate("ContentPageDonation", {nomeColecao: 'MoneyDonation', titulo: 'Dinheiro', cor: '#2E8B57'})
+        navigation.navigate("ContentPageDonation", { nomeColecao: 'MoneyDonation', titulo: 'Dinheiro', cor: '#2E8B57' })
     }
 
     renderButton0() {
@@ -34,7 +34,7 @@ class MainPerson extends React.Component {
             icon={<Icon name="clock-o" size={15} color="white" />}
             titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{ backgroundColor: '#1E90FF' }}
-            title="Tempo" 
+            title="Tempo"
             onPress={() => this.trySeachTimeDonation()} />
     }
 
@@ -52,7 +52,7 @@ class MainPerson extends React.Component {
             icon={<Icon name="shirtsinbulk" size={15} color="white" />}
             titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{ backgroundColor: '#DAA520' }}
-            title="Roupa" 
+            title="Roupa"
             onPress={() => this.trySeachClotheDonation()} />
     }
 
@@ -68,7 +68,7 @@ class MainPerson extends React.Component {
     render() {
         return (
             <View>
-                <HeaderMenu text = 'Doar' color = '#3D6DCC'/>
+                <HeaderMenu text='Doar' color='#3D6DCC' />
                 <View flexDirection='column' display='flex' marginTop='40px'>
                     <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton0()}

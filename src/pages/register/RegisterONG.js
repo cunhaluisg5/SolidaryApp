@@ -37,22 +37,22 @@ class RegisterONG extends React.Component {
         const { cnpj, nome, telefone, email, usuario, senha } = this.state;
         const { navigation } = this.props;
         firebase.auth().createUserWithEmailAndPassword(email.trim(), senha)
-        .then((user) => {
-            const userID = user.user.uid;
-            const userRef = firebase.firestore().collection('ONG')
-            .doc(userID);
-            userRef.set({
-                cnpj,
-                nome,
-                telefone,
-                email,
-                usuario
-            });
-            firebase.auth().currentUser.updateProfile({displayName: "ong"})
-            navigation.navigate("Index");
-        }).catch((error) => {
-            console.log("Erro ao adicionar o doc ", error);
-        })
+            .then((user) => {
+                const userID = user.user.uid;
+                const userRef = firebase.firestore().collection('ONG')
+                    .doc(userID);
+                userRef.set({
+                    cnpj,
+                    nome,
+                    telefone,
+                    email,
+                    usuario
+                });
+                firebase.auth().currentUser.updateProfile({ displayName: "ong" })
+                navigation.navigate("Index");
+            }).catch((error) => {
+                console.log("Erro ao adicionar o doc ", error);
+            })
     }
 
     renderScreen() {
@@ -112,13 +112,6 @@ class RegisterONG extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    checkbox: {
-        flexDirection: "row",
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10
-    },
     button: {
         paddingLeft: 20,
         paddingRight: 20,

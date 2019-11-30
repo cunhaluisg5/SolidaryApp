@@ -29,19 +29,19 @@ class Register extends React.Component {
                         </Text>
                         <Button
                             buttonStyle={styles.button}
-                            title='Cadastrar Voluntário' 
+                            title='Cadastrar Voluntário'
                             onPress={() => this.registerPerson()} />
                     </Card>
                 </View>
                 <View style={styles.image}>
-                    <Card 
+                    <Card
                         image={require('../../images/ong.png')}>
                         <Text style={styles.text}>
                             Cadastre-se como uma ONG para receber doações.
                         </Text>
                         <Button
                             buttonStyle={styles.button}
-                            title='Cadastrar ONG' 
+                            title='Cadastrar ONG'
                             onPress={() => this.registerONG()} />
                     </Card>
                 </View>

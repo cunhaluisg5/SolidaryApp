@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, StyleSheet, ScrollView } from 'react-native';
+import { TextInput, StyleSheet, ScrollView } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HeaderMenu from '../../components/HeaderMenu';
@@ -130,28 +130,12 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20
     },
-    checkbox: {
-        flexDirection: "row",
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    check: {
-        padding: 0
-    },
     button: {
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 20,
         fontSize: 20,
         marginBottom: 20
-    },
-    nomeONG: {
-        fontSize: 16,
-        textAlign: "center"
-    },
-    text: {
-        textAlign: "center"
     },
     textInput: {
         borderColor: 'black',
@@ -163,12 +147,6 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 10
-    },
-    containerText: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 50
     },
     container: {
         flex: 1,

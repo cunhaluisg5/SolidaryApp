@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, ActivityIndicator, TextInput, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ActivityIndicator, TextInput, Alert } from 'react-native';
 import { Card } from 'react-native-elements'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -10,8 +10,8 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mail: '',
-            pass: '',
+            mail: 'user@user.com',
+            pass: '123456',
             message: '',
             isLoading: false
         }
@@ -33,7 +33,6 @@ class Index extends React.Component {
         const { navigation } = this.props
         const user = firebase.auth().currentUser;
         if (user) {
-            const id = user.uid;
             if (user.displayName === 'ong') {
                 navigation.navigate("MainONG");
             } else {
@@ -45,9 +44,6 @@ class Index extends React.Component {
     }
 
     renderButtonEnter() {
-        if (this.state.isLoading)
-            return <ActivityIndicator />
-
         return <Button
             icon={
                 <Icon
@@ -114,6 +110,14 @@ class Index extends React.Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <View style={styles.loading}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                    <Text>Aguarde, carregando...</Text>
+                </View>
+            )
+        }
         return (
             <View style={styles.container}>
                 <View style={styles.containerImage}>
@@ -146,6 +150,11 @@ class Index extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    loading: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     image: {
         width: wp('70%'),
         height: hp('70%')
@@ -155,16 +164,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20
-    },
-    text: {
-        flex: 1,
-        fontSize: 25,
-    },
-    containerText: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 25,
     },
     textInput: {
         borderColor: 'lightblue',
@@ -176,9 +175,6 @@ const styles = StyleSheet.create({
         paddingRight: 5,
         paddingLeft: 5,
         textAlign: 'left',
-    },
-    icon: {
-        height: hp('10%')
     },
     button: {
         paddingLeft: 20,

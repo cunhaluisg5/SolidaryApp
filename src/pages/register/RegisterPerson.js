@@ -34,36 +34,25 @@ class RegisterPerson extends React.Component {
     }
 
     tryRegister = () => {
-        /*const cpfSemPonto = this.state.cpf.replace(".", "").replace(".", "").replace("-", "");
-        console.log("cpfSemPonto ", cpfSemPonto); 
-
-        const { cpf } = require('cpf-cnpj-validator');
-        const cpfValido =cpf.isValid(cpfSemPonto);
-        console.log(cpfValido)*/
-
-
-
-
-
         const { cpf, nome, telefone, email, usuario, senha } = this.state;
         const { navigation } = this.props;
         firebase.auth().createUserWithEmailAndPassword(email.trim(), senha)
-        .then((user) => {
-            const userID = user.user.uid;
-            const userRef = firebase.firestore().collection('Voluntario')
-            .doc(userID);
-            userRef.set({
-                cpf,
-                nome,
-                telefone,
-                email,
-                usuario
-            });
-            firebase.auth().currentUser.updateProfile({displayName: "user"})
-            navigation.navigate("Index");
-        }).catch((error) => {
-            console.log("Erro ao adicionar o doc ", error);
-        })
+            .then((user) => {
+                const userID = user.user.uid;
+                const userRef = firebase.firestore().collection('Voluntario')
+                    .doc(userID);
+                userRef.set({
+                    cpf,
+                    nome,
+                    telefone,
+                    email,
+                    usuario
+                });
+                firebase.auth().currentUser.updateProfile({ displayName: "user" })
+                navigation.navigate("Index");
+            }).catch((error) => {
+                console.log("Erro ao adicionar o doc ", error);
+            })
     }
 
     renderScreen() {
@@ -123,13 +112,6 @@ class RegisterPerson extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    checkbox: {
-        flexDirection: "row",
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10
-    },
     button: {
         paddingLeft: 20,
         paddingRight: 20,

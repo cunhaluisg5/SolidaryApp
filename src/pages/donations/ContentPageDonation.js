@@ -1,11 +1,9 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, View, Text, Linking, ScrollView } from 'react-native';
-import { Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import email from 'react-native-email';
 import HeaderMenu from '../../components/HeaderMenu';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Firebase from '../../database/firebase';
 import ContentItem from '../../components/ContentItem';
 
@@ -40,17 +38,6 @@ class ContentPageDonation extends React.Component {
             contents,
             isLoading: false,
         });
-    }
-
-
-    renderActivityIndicator() {
-        if (this.state.isLoading) {
-            return (
-                <View>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
-            )
-        }
     }
 
     sendPhone = (phone) => {
@@ -115,27 +102,27 @@ class ContentPageDonation extends React.Component {
     }
 
     render() {
-        const { contents } = this.state;
-        const { titulo, cor } = this.props.navigation.state.params;
-
-        { this.renderActivityIndicator() }
-        if (contents.length === 0) {
+        if (this.state.isLoading) {
             return (
-                <View>
-                    <Text>{this.state.notFound}</Text>
-                    {console.log("Erro ao listar")}
+                <View style={styles.loading}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                    <Text>Aguarde, carregando...</Text>
                 </View>
             )
         }
+        const { contents } = this.state;
+        const { titulo, cor } = this.props.navigation.state.params;
+
+        if (contents.length === 0) {
+        }
         const items = contents.map((content, index) =>
             <ContentItem key={index} cor={cor} texto={content.texto} onPress={() => {
-                this.props.navigation.navigate('ONGDetail', {content, titulo, cor});
+                this.props.navigation.navigate('ONGDetail', { content, titulo, cor });
             }}
             />
-        )        
+        )
 
         return (
-
             <ScrollView style={styles.container}>
                 <HeaderMenu text={titulo} color={cor} />
                 {items}
@@ -145,27 +132,14 @@ class ContentPageDonation extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    button: {
-        width: wp('28%'),
-        marginTop: 20,
+    loading: {
         flex: 1,
-        flexDirection: "row",
-        alignContent: "center",
+        justifyContent: "center",
         alignItems: "center"
     },
     container: {
         flex: 1,
         backgroundColor: '#FFF',
-    },
-    containerText: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 25,
-    },
-    text: {
-        flex: 1,
-        fontSize: 15,
     }
 });
 

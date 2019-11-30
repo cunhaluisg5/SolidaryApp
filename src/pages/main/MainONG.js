@@ -5,49 +5,49 @@ import MyAd from '../sub/MyAd';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const AppTabNavigatorONG = createBottomTabNavigator(
-    {
-      'Campanhas': {
-        screen: MyAd,
-        navigationOptions: {
-          tabBarOptions: {
-            activeTintColor: "#00008B",
-            inactiveTintColor: "#000000",
-            activeBackgroundColor: "#6495ED",
-            inactiveBackgroundColor: "#A9A9A9",
-            style: {
-              height: 50,
-            },
-            labelStyle: {
-              fontSize: 15,
-            },
+  {
+    'Campanhas': {
+      screen: MyAd,
+      navigationOptions: {
+        tabBarOptions: {
+          activeTintColor: "#00008B",
+          inactiveTintColor: "#000000",
+          activeBackgroundColor: "#6495ED",
+          inactiveBackgroundColor: "#A9A9A9",
+          style: {
+            height: 50,
           },
-          tabBarIcon: ({ tintColor }) =>
-            <Icon name="hands-helping" color={tintColor} size={15} />
+          labelStyle: {
+            fontSize: 15,
+          },
         },
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="hands-helping" color={tintColor} size={15} />
       },
-      'Anúncio': {
-        screen: Ad,
-        navigationOptions: {
-          tabBarOptions: {
-            activeTintColor: "#00008B",
-            inactiveTintColor: "#000000",
-            activeBackgroundColor: "#6495ED",
-            inactiveBackgroundColor: "#A9A9A9",
-            style: {
-              height: 50,
-            },
-            labelStyle: {
-              fontSize: 15,
-            },
+    },
+    'Anúncio': {
+      screen: Ad,
+      navigationOptions: {
+        tabBarOptions: {
+          activeTintColor: "#00008B",
+          inactiveTintColor: "#000000",
+          activeBackgroundColor: "#6495ED",
+          inactiveBackgroundColor: "#A9A9A9",
+          style: {
+            height: 50,
           },
-          tabBarIcon: ({ tintColor }) =>
-            <Icon name="info" color={tintColor} size={15} />
-        }
-      },
+          labelStyle: {
+            fontSize: 15,
+          },
+        },
+        tabBarIcon: ({ tintColor }) =>
+          <Icon name="info" color={tintColor} size={15} />
+      }
     },
-    {
-      initialRouteName: 'Anúncio'
-    },
-  );
+  },
+  {
+    initialRouteName: 'Anúncio'
+  },
+);
 
-  export default AppTabNavigatorONG 
+export default AppTabNavigatorONG 
