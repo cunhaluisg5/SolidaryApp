@@ -48,6 +48,7 @@ class RegisterONG extends React.Component {
                 email,
                 usuario
             });
+            firebase.auth().currentUser.updateProfile({displayName: "ong"})
             navigation.navigate("Index");
         }).catch((error) => {
             console.log("Erro ao adicionar o doc ", error);

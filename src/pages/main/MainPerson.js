@@ -1,86 +1,91 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import BottomNavigation, { IconTab, Badge } from 'react-native-material-bottom-navigation'
-import Icon from '@expo/vector-icons/MaterialCommunityIcons'
+import React from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from 'react-native-elements';
+import HeaderMenu from '../../components/HeaderMenu';
+import { View } from '../../styles/style';
 
 class MainPerson extends React.Component {
-    state = {
-        activeTab: 'info'
+    constructor(props) {
+        super(props);
     }
 
-    tabs = [
-        {
-            key: 'info',
-            label: 'Info',
-            barColor: '#4169E1',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'information-outline'
-        },
-        {
-            key: 'account',
-            label: 'Account',
-            barColor: '#FF8C00',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'account-circle'
-        },
-        {
-            key: 'money',
-            label: 'Money',
-            barColor: '#006400',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'currency-usd'
-        },
-        {
-            key: 'settings',
-            label: 'Settings',
-            barColor: '#A0522D',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'settings'
-        }
-    ]
-
-    state = {
-        activeTab: this.tabs[0].key
+    trySeachTimeDonation() {
+        const { navigation } = this.props
+        navigation.navigate("ContentPageDonation", {nomeColecao:'TimeDonation', titulo: 'Tempo', cor: '#1E90FF'})
     }
 
-    renderIcon = icon => ({ isActive }) => (
-        <Icon size={35} color="white" name={icon} />
-    )
+    trySeachBloodDonation() {
+        const { navigation } = this.props
+        navigation.navigate("ContentPageDonation", {nomeColecao: 'BloodDonation', titulo: 'Sangue', cor: '#CD0000'})
+    }
 
-    renderTab = ({ tab, isActive }) => (
-        <IconTab
-            isActive={isActive}
-            showBadge={tab.key === 'account'}
-            renderBadge={() => <Badge>2</Badge>}
-            key={tab.key}
-            label={tab.label}
-            renderIcon={this.renderIcon(tab.icon)}
-        />
-    )
+    trySeachClotheDonation() {
+        const { navigation } = this.props
+        navigation.navigate("ContentPageDonation", {nomeColecao: 'ClotheDonation', titulo: 'Roupa', cor: '#DAA520'})
+    }
+
+    trySeachMoneyDonation() {
+        const { navigation } = this.props
+        navigation.navigate("ContentPageDonation", {nomeColecao: 'MoneyDonation', titulo: 'Dinheiro', cor: '#2E8B57'})
+    }
+
+    renderButton0() {
+        return <Button
+            icon={<Icon name="clock-o" size={15} color="white" />}
+            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#1E90FF' }}
+            title="Tempo" 
+            onPress={() => this.trySeachTimeDonation()} />
+    }
+
+    renderButton1() {
+        return <Button
+            icon={<Icon name="heart" size={15} color="white" />}
+            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#CD0000' }}
+            title="Sangue"
+            onPress={() => this.trySeachBloodDonation()} />
+    }
+
+    renderButton2() {
+        return <Button
+            icon={<Icon name="shirtsinbulk" size={15} color="white" />}
+            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#DAA520' }}
+            title="Roupa" 
+            onPress={() => this.trySeachClotheDonation()} />
+    }
+
+    renderButton3() {
+        return <Button
+            icon={<Icon name="money" size={15} color="white" />}
+            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#2E8B57' }}
+            title="Dinheiro"
+            onPress={() => this.trySeachMoneyDonation()} />
+    }
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.container}>
+            <View>
+                <HeaderMenu text = 'Doar' color = '#3D6DCC'/>
+                <View flexDirection='column' display='flex' marginTop='40px'>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
+                        {this.renderButton0()}
+                    </View>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
+                        {this.renderButton1()}
+                    </View>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
+                        {this.renderButton2()}
+                    </View>
+                    <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
+                        {this.renderButton3()}
+                    </View>
                 </View>
-                <BottomNavigation
-                    tabs={this.tabs}
-                    activeTab={this.state.activeTab}
-                    onTabPress={newTab => this.setState({ activeTab: newTab.key })}
-                    renderTab={this.renderTab}
-                    useLayoutAnimation
-                />
             </View>
-        )
+        );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        backgroundColor: '#FFF'
-    },
-});
-
-export default MainPerson
+export default MainPerson;

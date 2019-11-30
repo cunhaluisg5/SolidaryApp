@@ -9,7 +9,6 @@ import firebase from '../database/firebase'
 class Index extends React.Component {
     constructor(props) {
         super(props);
-        this.ref = firebase.firestore().collection('ONG');
         this.state = {
             mail: '',
             pass: '',
@@ -32,23 +31,14 @@ class Index extends React.Component {
 
     redirectUser() {
         const { navigation } = this.props
-        var user = firebase.auth().currentUser;
-
+        const user = firebase.auth().currentUser;
         if (user) {
             const id = user.uid;
-            
-            this.ref.get().then((snapshot) => {
-                snapshot.docs.forEach(doc => {
-                    if(doc.id === id) {
-                        //console.log("É ONG")
-                        navigation.navigate("MainONG");
-                    }else {
-                        //console.log("É voluntário")
-                        navigation.navigate("MainPerson");
-                    }
-                })
-            })
-
+            if (user.displayName === 'ong') {
+                navigation.navigate("MainONG");
+            } else {
+                navigation.navigate("MainPerson");
+            }
         } else {
             console.log("Usuário não está logado")
         }
@@ -106,13 +96,7 @@ class Index extends React.Component {
                             {
                                 text: 'Sim',
                                 onPress: () => {
-                                    firebase.auth().createUserWithEmailAndPassword(mail, pass)
-                                        .then(user => {
-                                            this.setState({ message: 'Sucesso' })
-                                        })
-                                        .catch(error => {
-                                            this.setState({ message: error.code })
-                                        })
+                                    this.props.navigation.navigate("Register")
                                 }
                             },
                             {

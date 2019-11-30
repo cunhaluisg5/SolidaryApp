@@ -1,86 +1,53 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import BottomNavigation, { IconTab, Badge } from 'react-native-material-bottom-navigation'
-import Icon from '@expo/vector-icons/MaterialCommunityIcons'
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import Ad from '../sub/Ad';
+import MyAd from '../sub/MyAd';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
-class MainONG extends React.Component {
-    state = {
-        activeTab: 'info'
-    }
-
-    tabs = [
-        {
-            key: 'info',
-            label: 'Info',
-            barColor: '#4169E1',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'information-outline'
+const AppTabNavigatorONG = createBottomTabNavigator(
+    {
+      'Campanhas': {
+        screen: MyAd,
+        navigationOptions: {
+          tabBarOptions: {
+            activeTintColor: "#00008B",
+            inactiveTintColor: "#000000",
+            activeBackgroundColor: "#6495ED",
+            inactiveBackgroundColor: "#A9A9A9",
+            style: {
+              height: 50,
+            },
+            labelStyle: {
+              fontSize: 15,
+            },
+          },
+          tabBarIcon: ({ tintColor }) =>
+            <Icon name="hands-helping" color={tintColor} size={15} />
         },
-        {
-            key: 'account',
-            label: 'Account',
-            barColor: '#FF8C00',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'account-circle'
-        },
-        {
-            key: 'money',
-            label: 'Money',
-            barColor: '#006400',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'currency-usd'
-        },
-        {
-            key: 'settings',
-            label: 'Settings',
-            barColor: '#A0522D',
-            pressColor: 'rgba(255, 255, 255, 0.16)',
-            icon: 'settings'
+      },
+      'Anúncio': {
+        screen: Ad,
+        navigationOptions: {
+          tabBarOptions: {
+            activeTintColor: "#00008B",
+            inactiveTintColor: "#000000",
+            activeBackgroundColor: "#6495ED",
+            inactiveBackgroundColor: "#A9A9A9",
+            style: {
+              height: 50,
+            },
+            labelStyle: {
+              fontSize: 15,
+            },
+          },
+          tabBarIcon: ({ tintColor }) =>
+            <Icon name="info" color={tintColor} size={15} />
         }
-    ]
-
-    state = {
-        activeTab: this.tabs[0].key
-    }
-
-    renderIcon = icon => ({ isActive }) => (
-        <Icon size={35} color="white" name={icon} />
-    )
-
-    renderTab = ({ tab, isActive }) => (
-        <IconTab
-            isActive={isActive}
-            showBadge={tab.key === 'account'}
-            renderBadge={() => <Badge>2</Badge>}
-            key={tab.key}
-            label={tab.label}
-            renderIcon={this.renderIcon(tab.icon)}
-        />
-    )
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.container}>
-                </View>
-                <BottomNavigation
-                    tabs={this.tabs}
-                    activeTab={this.state.activeTab}
-                    onTabPress={newTab => this.setState({ activeTab: newTab.key })}
-                    renderTab={this.renderTab}
-                    useLayoutAnimation
-                />
-            </View>
-        )
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        backgroundColor: '#FFF'
+      },
     },
-});
+    {
+      initialRouteName: 'Anúncio'
+    },
+  );
 
-export default MainONG
+  export default AppTabNavigatorONG 
