@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text  } from 'react-native';
+import { View, Text, Alert  } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text'
 import firebase from '../../database/firebase'
 import { Button, Card } from 'react-native-elements';
@@ -60,6 +60,20 @@ class RegisterPerson extends React.Component {
         return this.renderRegisterPerson()
     }
 
+    validatorCPF(text) {
+        //https://www.npmjs.com/package/validator-brazil
+
+        const cpfSemFormato = text.replace(".", "").replace(".", "").replace("-", "")
+
+        console.log("tamnaho do texto : ", text.length)
+        this.setState({ cpf: text })
+
+        if (text.length === 14 && !isCpf(cpfSemFormato)) {
+            Alert.alert("CPF Inválido!!!")
+            this.setState({ cpf: '' })
+        }
+    }
+
     renderRegisterPerson() {
         return (
             <Card title="Cadastro de Voluntário">
@@ -69,7 +83,7 @@ class RegisterPerson extends React.Component {
                                        marginLeft: 10, marginRight: 10, marginBottom: 10}}
                     type={'cpf'}
                     value={this.state.cpf}
-                    onChangeText={(text) => { this.setState({ cpf: text }) }}
+                    onChangeText={(text) => this.validatorCPF(text)}
                     placeholder="999.999.999-99" />
                 <Text>Nome Completo: </Text>
                 <TextInputRegister
