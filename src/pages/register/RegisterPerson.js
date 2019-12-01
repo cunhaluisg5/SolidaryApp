@@ -65,13 +65,39 @@ class RegisterPerson extends React.Component {
         //https://www.npmjs.com/package/validator-brazil
 
         const cpfSemFormato = text.replace(".", "").replace(".", "").replace("-", "")
-
-        console.log("tamnaho do texto : ", text.length)
         this.setState({ cpf: text })
 
-        if (text.length === 14 && !isCpf(cpfSemFormato)) {
-            Alert.alert("CPF Inválido!!!")
-            this.setState({ cpf: '' })
+        if (text.length === 14) {
+
+            if (!isCpf(cpfSemFormato)) {
+                Alert.alert("CPF Inválido", "Tente novamente!")
+                this.setState({ cpf: '' })
+            } else {
+
+                Alert.alert("CPF já cadastrado ", "Tente novamente!")
+                let volutario = firebase.firestore().collection('Voluntario')
+
+                let query = volutario.where('cpf', '==', text).get()
+                    .then(snapshot => {
+                        if (snapshot.empty) {
+                            console.log('No matching documents.');
+                            return false;
+                        }
+                        return true;
+                    })
+                    .catch(err => {
+                        console.log('Error getting documents', err);
+                    });
+
+                console.log("valor verdadeiro: ", query)
+
+                if (query) {
+                    Alert.alert("CPF já cadastrado ", "Tente novamente!")
+                    this.setState({ cpf: '' })
+                }
+
+                console.log("Retorno de CPF: ", volutario)
+            }
         }
     }
 

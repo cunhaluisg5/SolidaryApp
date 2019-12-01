@@ -69,9 +69,32 @@ class RegisterONG extends React.Component {
         console.log("tamnaho do texto : ", text.length)
         this.setState({ cnpj: text })
 
-        if (text.length === 18 && !isCnpj(cpfSemFormato)) {
-            Alert.alert("CNPJ Inválido!!!")
-            this.setState({ cnpj: '' })
+        if (text.length === 18) {
+            if (!isCnpj(cpfSemFormato)) {
+                Alert.alert("CNPJ Inválido", "Tente novamente!")
+                this.setState({ cnpj: '' })
+            } else {
+
+                Alert.alert("CNPJ já cadastrado ", "Tente novamente!")
+                let Ong = firebase.firestore().collection('Ong')
+
+                let query = Ong.where('cpf', '==', text).get()
+                    .then(snapshot => {
+                        if (snapshot.empty) {
+                            console.log('No matching documents.');
+                            return false;
+                        }
+                        return true;
+                    })
+                    .catch(err => {
+                        console.log('Error getting documents', err);
+                    });
+
+                if (query) {
+                    Alert.alert("CNPJ já cadastrado ", "Tente novamente!")
+                    this.setState({ cpf: '' })
+                }
+            }
         }
     }
 

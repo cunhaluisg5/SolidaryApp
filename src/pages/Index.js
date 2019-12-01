@@ -4,8 +4,9 @@ import { Card } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import Firebase from '../database/firebase';
-import { 
-    Loading, Image, ContainerImage, TextInput, But, ContainerButton, Container } from '../styles/style'
+import {
+    Loading, Image, ContainerImage, TextInput, But, ContainerButton, Container
+} from '../styles/style'
 
 class Index extends React.Component {
     constructor(props) {
