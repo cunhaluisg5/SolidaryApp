@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { Card } from 'react-native-elements';
-import { Text } from "../../styles/style";
+import { Text, Loading } from "../../styles/style";
 import HeaderMenu from '../../components/HeaderMenu';
 import Firebase from '../../database/firebase';
 
@@ -36,10 +36,10 @@ class ONGDetail extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <View style={styles.loading}>
+                <Loading>
                     <ActivityIndicator size="large" color="#0000ff" />
                     <Text>Aguarde, carregando...</Text>
-                </View>
+                </Loading>
             )
         }
         const { nome, cnpj, email, telefone } = this.state.content;
@@ -53,10 +53,10 @@ class ONGDetail extends React.Component {
                 <Card title={nome}
                     titleStyle={{ backgroundColor: cor, color: '#FFFFFF' }}
                     containerStyle={{ backgroundColor: cor }}>
-                    <Text style={styles.text}>CNPJ: {cnpj}</Text>
-                    <Text style={styles.text}>Email: {email}</Text>
-                    <Text style={styles.text}>Telefone: {telefone}</Text>
-                    <Text style={styles.text}>Campanha: {texto}</Text>
+                    <Text>CNPJ: {cnpj}</Text>
+                    <Text>Email: {email}</Text>
+                    <Text>Telefone: {telefone}</Text>
+                    <Text>Campanha: {texto}</Text>
                 </Card>
             </View>
         );
@@ -65,15 +65,3 @@ class ONGDetail extends React.Component {
 
 
 export default ONGDetail;
-
-
-const styles = StyleSheet.create({
-    loading: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    text: {
-        color: '#FFFFFF'
-    },
-})

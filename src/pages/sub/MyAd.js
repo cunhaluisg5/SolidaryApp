@@ -1,7 +1,7 @@
 import React from 'react';
-import { ScrollView, StyleSheet, ActivityIndicator, Text } from 'react-native';
+import { ScrollView, ActivityIndicator, Text } from 'react-native';
 import HeaderMenu from '../../components/HeaderMenu';
-import { View } from '../../styles/style';
+import { View, Loading, Drop } from '../../styles/style';
 import { Dropdown } from 'react-native-material-dropdown';
 import Firebase from '../../database/firebase';
 import ContentItem from '../../components/ContentItem';
@@ -89,10 +89,10 @@ class MyAd extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <View style={styles.loading}>
+                <Loading>
                     <ActivityIndicator size="large" color="#0000ff" />
                     <Text>Aguarde, carregando...</Text>
-                </View>
+                </Loading>
             )
         }
 
@@ -109,16 +109,16 @@ class MyAd extends React.Component {
         return (
             <View>
                 <HeaderMenu text='Campanhas' color='#3D6DCC' />
-                <View style={styles.drop}>
+                <Drop>
                     <Dropdown
-                        itemTextStyle={styles.dropdown}
+                        itemTextStyle={{textAlign: "center"}}
                         label='Tipo de Anúncio'
                         baseColor='#6A5ACD'
                         value={this.state.value}
                         data={this.state.data}
                         onChangeText={(value) => { this.setState({ value }); this.init() }}
                     />
-                </View>
+                </Drop>
                 <ScrollView>
                     {items}
                 </ScrollView>
@@ -126,20 +126,5 @@ class MyAd extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    loading: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    dropdown: {
-        textAlign: "center"
-    },
-    drop: {
-        marginLeft: 20,
-        marginRight: 20
-    }
-});
 
 export default MyAd;

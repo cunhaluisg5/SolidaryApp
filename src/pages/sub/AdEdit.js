@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native';
+import { Text, ScrollView, ActivityIndicator } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import HeaderMenu from '../../components/HeaderMenu';
 import Firebase from '../../database/firebase';
+import { Loading, ContainerBut, TextInputRegister } from '../../styles/style'
 
 class AdEdit extends React.Component {
 
@@ -84,10 +85,10 @@ class AdEdit extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <View style={styles.loading}>
+                <Loading>
                     <ActivityIndicator size="large" color="#0000ff" />
                     <Text>Aguarde, carregando...</Text>
-                </View>
+                </Loading>
             )
         }
         const cor = this.props.navigation.state.params.cor
@@ -97,13 +98,13 @@ class AdEdit extends React.Component {
                 <Card title="Anunciar"
                     titleStyle={{ backgroundColor: '#ADD8E6' }}
                     containerStyle={{ backgroundColor: '#F0F8FF' }}>
-                    <TextInput style={styles.textInput}
+                    <TextInputRegister
                         multiline={true}
                         numberOfLines={6}
                         value={this.state.texto}
                         onChangeText={(value) => this.setState({ texto: value })} />
                 </Card>
-                <View style={styles.containerButton}>
+                <ContainerBut>
                     <Button
                         buttonStyle={{ marginTop: 10 }}
                         title='Editar'
@@ -112,7 +113,7 @@ class AdEdit extends React.Component {
                         buttonStyle={{ marginTop: 10, backgroundColor: '#CD0000' }}
                         title='Apagar'
                         onPress={() => { this.tryDelete(); }} />
-                </View>
+                </ContainerBut>
             </ScrollView>
         );
     }
@@ -120,28 +121,3 @@ class AdEdit extends React.Component {
 
 
 export default AdEdit;
-
-
-const styles = StyleSheet.create({
-    loading: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    containerButton: {
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 10
-    },
-    textInput: {
-        borderColor: 'black',
-        borderBottomWidth: 1,
-        fontSize: 20,
-        paddingRight: 5,
-        paddingLeft: 5,
-        textAlign: 'center',
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 10
-    }
-})

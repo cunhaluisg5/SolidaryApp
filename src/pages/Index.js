@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ActivityIndicator, TextInput, Alert } from 'react-native';
+import { Text, ActivityIndicator, Alert } from 'react-native';
 import { Card } from 'react-native-elements'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
-import firebase from '../database/firebase'
+import Firebase from '../database/firebase';
+import { 
+    Loading, Image, ContainerImage, TextInput, But, ContainerButton, Container } from '../styles/style'
 
 class Index extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class Index extends React.Component {
 
     redirectUser() {
         const { navigation } = this.props
-        const user = firebase.auth().currentUser;
+        const user = Firebase.auth().currentUser;
         if (user) {
             if (user.displayName === 'ong') {
                 navigation.navigate("MainONG");
@@ -78,8 +79,7 @@ class Index extends React.Component {
         this.setState({ isLoading: true })
         const { mail, pass } = this.state
 
-        //promisse
-        firebase.auth().signInWithEmailAndPassword(mail, pass)
+        Firebase.auth().signInWithEmailAndPassword(mail, pass)
             .then(user => {
                 this.setState({ message: 'Sucesso' })
                 this.redirectUser();
@@ -112,83 +112,39 @@ class Index extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <View style={styles.loading}>
+                <Loading>
                     <ActivityIndicator size="large" color="#0000ff" />
                     <Text>Aguarde, carregando...</Text>
-                </View>
+                </Loading>
             )
         }
         return (
-            <View style={styles.container}>
-                <View style={styles.containerImage}>
-                    <Image resizeMode="contain" style={styles.image} source={require('../images/logo.png')} />
-                </View>
+            <Container>
+                <ContainerImage>
+                    <Image resizeMode="contain" source={require('../images/logo.png')} />
+                </ContainerImage>
                 <Card title="Logar ou Cadastrar-se">
                     <TextInput
-                        style={styles.textInput}
                         placeholder="user@email.com"
                         onChangeText={(value) => this.onChangeMail(value)}
                     />
                     <TextInput
-                        style={styles.textInput}
                         placeholder="********"
                         secureTextEntry
                         onChangeText={(value) => this.onChangePass(value)}
                     />
                 </Card>
-                <View style={styles.containerButton}>
-                    <View style={styles.button}>
+                <ContainerButton>
+                    <But paddingTop={10} marginBottom={10}>
                         {this.renderButtonEnter()}
-                    </View>
-                    <View style={styles.button}>
+                    </But>
+                    <But paddingTop={10} marginBottom={10}>
                         {this.renderButtonRegister()}
-                    </View>
-                </View>
-            </View >
+                    </But>
+                </ContainerButton>
+            </Container >
         );
     }
 }
-
-const styles = StyleSheet.create({
-    loading: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    image: {
-        width: wp('70%'),
-        height: hp('70%')
-    },
-    containerImage: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20
-    },
-    textInput: {
-        borderColor: 'lightblue',
-        borderBottomWidth: 1,
-        borderStyle: 'solid',
-        fontSize: 15,
-        fontFamily: 'sans-serif-light',
-        paddingBottom: 10,
-        paddingRight: 5,
-        paddingLeft: 5,
-        textAlign: 'left',
-    },
-    button: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 10,
-        marginBottom: 10,
-    },
-    containerButton: {
-        marginBottom: 40
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#FFF',
-    }
-});
 
 export default Index;

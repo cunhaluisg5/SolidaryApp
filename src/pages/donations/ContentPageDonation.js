@@ -1,11 +1,12 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, View, Text, Linking, ScrollView } from 'react-native';
+import { ActivityIndicator, Text, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import email from 'react-native-email';
 import HeaderMenu from '../../components/HeaderMenu';
 import Firebase from '../../database/firebase';
 import ContentItem from '../../components/ContentItem';
+import { Loading, ContainerScroll } from '../../styles/style'
 
 class ContentPageDonation extends React.Component {
 
@@ -104,10 +105,10 @@ class ContentPageDonation extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <View style={styles.loading}>
+                <Loading>
                     <ActivityIndicator size="large" color="#0000ff" />
                     <Text>Aguarde, carregando...</Text>
-                </View>
+                </Loading>
             )
         }
         const { contents } = this.state;
@@ -123,24 +124,12 @@ class ContentPageDonation extends React.Component {
         )
 
         return (
-            <ScrollView style={styles.container}>
+            <ContainerScroll>
                 <HeaderMenu text={titulo} color={cor} />
                 {items}
-            </ScrollView>
+            </ContainerScroll>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    loading: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#FFF',
-    }
-});
 
 export default ContentPageDonation;
