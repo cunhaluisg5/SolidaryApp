@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text'
 import firebase from '../../database/firebase'
 import { Button, Card } from 'react-native-elements';
@@ -59,6 +59,20 @@ class RegisterONG extends React.Component {
     renderScreen() {
         return this.renderRegisterONG()
     }
+    
+    validatorCNPJ(text) {
+        //https://www.npmjs.com/package/validator-brazil
+
+        const cpfSemFormato = text.replace(".", "").replace(".", "").replace("/", "").replace("-", "")
+
+        console.log("tamnaho do texto : ", text.length)
+        this.setState({ cpf: text })
+
+        if (text.length === 18 && !isCpf(cpfSemFormato)) {
+            Alert.alert("CPF Inválido!!!")
+            this.setState({ cpf: '' })
+        }
+    }
 
     renderRegisterONG() {
         return (
@@ -69,7 +83,7 @@ class RegisterONG extends React.Component {
                                        marginLeft: 10, marginRight: 10, marginBottom: 10}}
                     type={'cnpj'}
                     value={this.state.cnpj}
-                    onChangeText={(text) => { this.setState({ cnpj: text }) }}
+                    onChangeText={(text) => this.validatorCNPJ(text)}
                     placeholder="99.999.999/9999-99" />
                 <Text>Nome: </Text>
                 <TextInputRegister
