@@ -70,8 +70,8 @@ class RegisterONG extends React.Component {
         this.setState({ cnpj: text })
 
         if (text.length === 18 && !isCnpj(cpfSemFormato)) {
-            Alert.alert("CPF Inválido!!!")
-            this.setState({ cpf: '' })
+            Alert.alert("CNPJ Inválido!!!")
+            this.setState({ cnpj: '' })
         }
     }
 

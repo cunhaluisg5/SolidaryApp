@@ -70,7 +70,7 @@ class RegisterPerson extends React.Component {
         this.setState({ cpf: text })
 
         if (text.length === 14 && !isCpf(cpfSemFormato)) {
-            Alert.alert("CNPJ Inválido!!!")
+            Alert.alert("CPF Inválido!!!")
             this.setState({ cpf: '' })
         }
     }
