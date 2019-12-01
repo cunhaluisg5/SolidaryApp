@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Alert  } from 'react-native';
+import { View, Text, Alert } from 'react-native';
+import { isCpf } from "validator-brazil";
 import { TextInputMask } from 'react-native-masked-text'
 import firebase from '../../database/firebase'
 import { Button, Card } from 'react-native-elements';
@@ -69,7 +70,7 @@ class RegisterPerson extends React.Component {
         this.setState({ cpf: text })
 
         if (text.length === 14 && !isCpf(cpfSemFormato)) {
-            Alert.alert("CPF Inválido!!!")
+            Alert.alert("CNPJ Inválido!!!")
             this.setState({ cpf: '' })
         }
     }
@@ -78,9 +79,11 @@ class RegisterPerson extends React.Component {
         return (
             <Card title="Cadastro de Voluntário">
                 <Text>CPF: </Text>
-                <TextInputMask style={{borderColor: 'black', borderBottomWidth: 1, fontSize: 20,
-                                       paddingRight: 5, paddingLeft: 5, textAlign: 'center',
-                                       marginLeft: 10, marginRight: 10, marginBottom: 10}}
+                <TextInputMask style={{
+                    borderColor: 'black', borderBottomWidth: 1, fontSize: 20,
+                    paddingRight: 5, paddingLeft: 5, textAlign: 'center',
+                    marginLeft: 10, marginRight: 10, marginBottom: 10
+                }}
                     type={'cpf'}
                     value={this.state.cpf}
                     onChangeText={(text) => this.validatorCPF(text)}
