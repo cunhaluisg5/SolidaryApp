@@ -26,7 +26,8 @@
     "react-navigation": "^4.0.0",
     "react-navigation-stack": "^1.5.1",
     "react-navigation-tabs": "^2.5.5",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "validator-brazil": "^1.2.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^6.0.0"
