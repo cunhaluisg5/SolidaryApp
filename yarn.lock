@@ -6019,6 +6019,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+    
+ validator-brazil@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/validator-brazil/-/validator-brazil-1.2.0.tgz#fc596286fca5543aeb3e93095969d52e11c6f51b"
+  integrity sha512-18y7ZKPKrW4MwsylEVGPdJXKI+w1WZzCTszkSNfxHP3kSfueOc8P4Cpdm51EzgEULuboqPQYCx9e3Glr/uvgfg==
 
 vary@~1.1.2:
   version "1.1.2"
