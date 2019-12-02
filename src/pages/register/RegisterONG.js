@@ -65,34 +65,31 @@ class RegisterONG extends React.Component {
         //https://www.npmjs.com/package/validator-brazil
 
         const cpfSemFormato = text.replace(".", "").replace(".", "").replace("/", "").replace("-", "")
-
-        console.log("tamnaho do texto : ", text.length)
         this.setState({ cnpj: text })
 
         if (text.length === 18) {
+
             if (!isCnpj(cpfSemFormato)) {
                 Alert.alert("CNPJ Inválido", "Tente novamente!")
                 this.setState({ cnpj: '' })
             } else {
-
-                Alert.alert("CNPJ já cadastrado ", "Tente novamente!")
+                let existe = false;                
                 let Ong = firebase.firestore().collection('Ong')
-
-                let query = Ong.where('cpf', '==', text).get()
+                Ong.where('cnpj', '==', text).get()
                     .then(snapshot => {
-                        if (snapshot.empty) {
+
+                        if (!snapshot.empty) {
                             console.log('No matching documents.');
-                            return false;
+                            existe = true;
                         }
-                        return true;
                     })
                     .catch(err => {
                         console.log('Error getting documents', err);
                     });
 
-                if (query) {
+                if (existe) {
                     Alert.alert("CNPJ já cadastrado ", "Tente novamente!")
-                    this.setState({ cpf: '' })
+                    this.setState({ cnpj: '' })
                 }
             }
         }
@@ -116,8 +113,19 @@ class RegisterONG extends React.Component {
                     placeholder="nome ...."
                     onChangeText={(value) => { this.setState({ nome: value }) }} />
                 <Text>Telefone: </Text>
-                <TextInputRegister
-                    placeholder="telefone"
+                <TextInputMask style={{
+                    borderColor: 'black', borderBottomWidth: 1, fontSize: 20,
+                    paddingRight: 5, paddingLeft: 5, textAlign: 'center',
+                    marginLeft: 10, marginRight: 10, marginBottom: 10
+                }}
+                    type={'cel-phone'}
+                    options={{
+                        maskType: 'BRL',
+                        withDDD: true,
+                        dddMask: '(99) '
+                    }}
+                    value={this.state.telefone}
+                    placeholder="(99) 99999-9999"
                     onChangeText={(value) => this.setState({ telefone: value })} />
                 <Text>E-mail: </Text>
                 <TextInputRegister

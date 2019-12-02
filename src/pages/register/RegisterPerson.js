@@ -73,30 +73,25 @@ class RegisterPerson extends React.Component {
                 Alert.alert("CPF Inválido", "Tente novamente!")
                 this.setState({ cpf: '' })
             } else {
-
-                Alert.alert("CPF já cadastrado ", "Tente novamente!")
+                let existe = false;
                 let volutario = firebase.firestore().collection('Voluntario')
-
-                let query = volutario.where('cpf', '==', text).get()
+                volutario.where('cpf', '==', text).get()
                     .then(snapshot => {
-                        if (snapshot.empty) {
+
+                        if (!snapshot.empty) {
                             console.log('No matching documents.');
-                            return false;
+                            existe = true;
+                            console.log("existe : ", existe)
                         }
-                        return true;
                     })
                     .catch(err => {
                         console.log('Error getting documents', err);
                     });
 
-                console.log("valor verdadeiro: ", query)
-
-                if (query) {
+                if (existe) {
                     Alert.alert("CPF já cadastrado ", "Tente novamente!")
                     this.setState({ cpf: '' })
                 }
-
-                console.log("Retorno de CPF: ", volutario)
             }
         }
     }
@@ -119,8 +114,19 @@ class RegisterPerson extends React.Component {
                     placeholder="nome ...."
                     onChangeText={(value) => { this.setState({ nome: value }) }} />
                 <Text>Telefone: </Text>
-                <TextInputRegister
-                    placeholder="telefone"
+                <TextInputMask style={{
+                    borderColor: 'black', borderBottomWidth: 1, fontSize: 20,
+                    paddingRight: 5, paddingLeft: 5, textAlign: 'center',
+                    marginLeft: 10, marginRight: 10, marginBottom: 10
+                }}
+                    type={'cel-phone'}
+                    options={{
+                        maskType: 'BRL',
+                        withDDD: true,
+                        dddMask: '(99) '
+                    }}
+                    value={this.state.telefone}
+                    placeholder="(99) 99999-9999"
                     onChangeText={(value) => this.setState({ telefone: value })} />
                 <Text>E-mail: </Text>
                 <TextInputRegister
