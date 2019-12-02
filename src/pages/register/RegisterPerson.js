@@ -73,25 +73,19 @@ class RegisterPerson extends React.Component {
                 Alert.alert("CPF Inválido", "Tente novamente!")
                 this.setState({ cpf: '' })
             } else {
-                let existe = false;
+
                 let volutario = firebase.firestore().collection('Voluntario')
                 volutario.where('cpf', '==', text).get()
                     .then(snapshot => {
 
                         if (!snapshot.empty) {
-                            console.log('No matching documents.');
-                            existe = true;
-                            console.log("existe : ", existe)
+                            Alert.alert("CPF já cadastrado ", "Tente novamente!")
+                            this.setState({ cpf: '' })
                         }
                     })
                     .catch(err => {
                         console.log('Error getting documents', err);
                     });
-
-                if (existe) {
-                    Alert.alert("CPF já cadastrado ", "Tente novamente!")
-                    this.setState({ cpf: '' })
-                }
             }
         }
     }

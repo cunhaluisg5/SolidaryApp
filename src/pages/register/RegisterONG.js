@@ -64,33 +64,28 @@ class RegisterONG extends React.Component {
     validatorCNPJ(text) {
         //https://www.npmjs.com/package/validator-brazil
 
-        const cpfSemFormato = text.replace(".", "").replace(".", "").replace("/", "").replace("-", "")
+        const cnpjSemFormato = text.replace(".", "").replace(".", "").replace("/", "").replace("-", "")
         this.setState({ cnpj: text })
 
         if (text.length === 18) {
 
-            if (!isCnpj(cpfSemFormato)) {
+            if (!isCnpj(cnpjSemFormato)) {
                 Alert.alert("CNPJ Inválido", "Tente novamente!")
                 this.setState({ cnpj: '' })
             } else {
-                let existe = false;                
+
                 let Ong = firebase.firestore().collection('Ong')
                 Ong.where('cnpj', '==', text).get()
                     .then(snapshot => {
 
                         if (!snapshot.empty) {
-                            console.log('No matching documents.');
-                            existe = true;
+                            Alert.alert("CNPJ já cadastrado ", "Tente novamente!")
+                            this.setState({ cnpj: '' })
                         }
                     })
                     .catch(err => {
                         console.log('Error getting documents', err);
                     });
-
-                if (existe) {
-                    Alert.alert("CNPJ já cadastrado ", "Tente novamente!")
-                    this.setState({ cnpj: '' })
-                }
             }
         }
     }
