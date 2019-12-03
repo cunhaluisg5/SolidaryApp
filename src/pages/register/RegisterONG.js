@@ -44,16 +44,15 @@ class RegisterONG extends React.Component {
                 const userRef = firebase.firestore().collection('ONG')
                     .doc(userID);
                 userRef.set({
-                    cnpj,
-                    nome,
-                    telefone,
-                    email,
-                    usuario
+                    cnpj, nome, telefone, email, usuario
                 });
                 firebase.auth().currentUser.updateProfile({ displayName: "ong" })
+                console.log("A ONG foi cadastrada")
+                Alert.alert("Concluído", "ONG cadastrada com sucesso!");
                 navigation.navigate("Index");
             }).catch((error) => {
-                console.log("Erro ao adicionar o doc ", error);
+                console.log("Erro ao cadastrar", error);
+                Alert.alert("Atenção", "Não foi possível efetuar o cadastro!");
             })
     }
 

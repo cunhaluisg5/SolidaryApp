@@ -44,16 +44,15 @@ class RegisterPerson extends React.Component {
                 const userRef = firebase.firestore().collection('Voluntario')
                     .doc(userID);
                 userRef.set({
-                    cpf,
-                    nome,
-                    telefone,
-                    email,
-                    usuario
+                    cpf, nome, telefone, email, usuario
                 });
                 firebase.auth().currentUser.updateProfile({ displayName: "user" })
+                console.log("O voluntário foi cadastrado")
+                Alert.alert("Concluído", "Voluntário cadastrado com sucesso!");
                 navigation.navigate("Index");
             }).catch((error) => {
-                console.log("Erro ao adicionar o doc ", error);
+                console.log("Erro ao cadastrar", error);
+                Alert.alert("Atenção", "Não foi possível efetuar o cadastro!");
             })
     }
 

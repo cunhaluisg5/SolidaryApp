@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ScrollView, ActivityIndicator } from 'react-native';
+import { Text, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import HeaderMenu from '../../components/HeaderMenu';
 import Firebase from '../../database/firebase';
@@ -43,19 +43,38 @@ class AdEdit extends React.Component {
         this.setState({
             isLoading: true,
         });
+        if (this.state.texto.trim() !== '') {
 
-        const updateRef = Firebase.firestore().collection(this.state.colecao).doc(this.state.id);
-        updateRef.set({
-            idONG: this.state.idONG,
-            texto: this.state.texto
-        }).then((docRef) => {
-            console.log("Editou")
-            this.props.navigation.goBack();
-        })
-            .catch((error) => {
-                console.error("Erro atualizando documento: ", error);
-            });
-
+            Alert.alert('Atenção',
+                'Deseja editar esta campanha?',
+                [
+                    {
+                        text: 'Sim',
+                        onPress: () => {
+                            const updateRef = Firebase.firestore().collection(this.state.colecao)
+                                .doc(this.state.id);
+                            updateRef.set({
+                                idONG: this.state.idONG,
+                                texto: this.state.texto
+                            }).then((docRef) => {
+                                console.log("Campanha editada");
+                                Alert.alert("Concluído", "Campanha editada com sucesso!");
+                                this.props.navigation.goBack();
+                            })
+                                .catch((error) => {
+                                    console.error("Erro ao editar a campanha", error);
+                                    Alert.alert("Atenção", "Não foi possível editar a campanha!");
+                                });
+                        }
+                    },
+                    {
+                        text: 'Não',
+                        onPress: () => { console.log('Usuário não quer editar a campanha') }
+                    }])
+        } else {
+            console.log("Campo texto em branco");
+            Alert.alert("Atenção", "Preencha a campanha corretamente!");
+        }
         this.setState({
             isLoading: false,
         });
@@ -67,19 +86,29 @@ class AdEdit extends React.Component {
             isLoading: true
         });
 
-        Firebase.firestore().collection(this.state.colecao).doc(this.state.id).delete().then(() => {
-            console.log("Documento apagado");
-            this.setState({
-                isLoading: false
-            });
-            navigation.goBack();
-        }).catch((error) => {
-            console.error("Erro apagando o documento ", error);
-            this.setState({
-                isLoading: false
-            });
+        Alert.alert('Atenção',
+            'Deseja apagar esta campanha?',
+            [
+                {
+                    text: 'Sim',
+                    onPress: () => {
+                        Firebase.firestore().collection(this.state.colecao).doc(this.state.id).delete().then(() => {
+                            console.log("Campanha apagada");
+                            Alert.alert("Concluído", "Campanha apagada com sucesso!");
+                            navigation.goBack();
+                        }).catch((error) => {
+                            console.error("Erro ao apagar a campanha", error);
+                            Alert.alert("Atenção", "Não foi possível apagar a campanha!");
+                        });
+                    }
+                },
+                {
+                    text: 'Não',
+                    onPress: () => { console.log('Usuário não quer apagar a campanha') }
+                }])
+        this.setState({
+            isLoading: false
         });
-
     }
 
     render() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HeaderMenu from '../../components/HeaderMenu';
@@ -27,19 +27,26 @@ class Ad extends React.Component {
     }
 
     tryRegister = () => {
-        const saveRef = Firebase.firestore().collection(this.returnCollection());
-        const { uid } = Firebase.auth().currentUser;
-        const { navigation } = this.props;
-        saveRef.add({
-            idONG: uid,
-            texto: this.state.texto,
-        }).then((docRef) => {
-            console.log('Adicionou')
-            navigation.goBack();
-        })
-            .catch((error) => {
-                console.error("Erro adicionando o documento: ", error);
-            });
+        if (this.state.texto.trim() !== '') {
+            const saveRef = Firebase.firestore().collection(this.returnCollection());
+            const { uid } = Firebase.auth().currentUser;
+            const { navigation } = this.props;
+            saveRef.add({
+                idONG: uid,
+                texto: this.state.texto,
+            }).then((docRef) => {
+                console.log("Campanha publicada");
+                Alert.alert("Concluído", "Campanha publicada com sucesso!");
+                navigation.goBack();
+            })
+                .catch((error) => {
+                    console.log("Erro ao publicar campanha", error);
+                    Alert.alert("Atenção", "Não foi possível publicar a campanha!");
+                });
+        } else {
+            console.log("Campo texto em branco");
+            Alert.alert("Atenção", "Preencha a campanha corretamente!");
+        }
     }
 
     returnCollection() {
@@ -81,11 +88,11 @@ class Ad extends React.Component {
     renderRegister() {
         return (
             <View>
-                <HeaderMenu text='Anúncio' color='#3D6DCC' />
+                <HeaderMenu text='Publicar' color='#3D6DCC' />
                 <Drop>
                     <Dropdown
-                        itemTextStyle={{textAlign: "center"}}
-                        label='Tipo de Anúncio'
+                        itemTextStyle={{ textAlign: "center" }}
+                        label='Tipo de Campanha'
                         baseColor='#6A5ACD'
                         value={this.state.value}
                         data={this.state.data}
@@ -99,7 +106,7 @@ class Ad extends React.Component {
                         <TextInputRegister
                             multiline={true}
                             numberOfLines={6}
-                            placeholder="Escreva seu anúncio aqui!"
+                            placeholder="Escreva sua campanha aqui!"
                             onChangeText={(value) => this.setState({ texto: value })} />
                     </Card>
                 </ScrollView>

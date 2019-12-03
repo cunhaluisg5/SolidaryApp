@@ -112,7 +112,7 @@ class MyAd extends React.Component {
                 <Drop>
                     <Dropdown
                         itemTextStyle={{textAlign: "center"}}
-                        label='Tipo de Anúncio'
+                        label='Tipo de Campanha'
                         baseColor='#6A5ACD'
                         value={this.state.value}
                         data={this.state.data}

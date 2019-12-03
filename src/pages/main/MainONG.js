@@ -25,7 +25,7 @@ const AppTabNavigatorONG = createBottomTabNavigator(
           <Icon name="hands-helping" color={tintColor} size={15} />
       },
     },
-    'Anúncio': {
+    'Publicar': {
       screen: Ad,
       navigationOptions: {
         tabBarOptions: {
@@ -46,7 +46,7 @@ const AppTabNavigatorONG = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Anúncio'
+    initialRouteName: 'Publicar'
   },
 );
 
