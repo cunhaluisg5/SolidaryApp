@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
-import { Card } from 'react-native-elements';
+import { View, ActivityIndicator, Linking } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import email from 'react-native-email';
+import { Card, Button } from 'react-native-elements';
 import { Text, Loading } from "../../styles/style";
 import HeaderMenu from '../../components/HeaderMenu';
 import Firebase from '../../database/firebase';
@@ -33,6 +35,50 @@ class ONGDetail extends React.Component {
             });
     }
 
+    sendPhone = (phone) => {
+        const tel = phone + ""
+        Linking.openURL(`tel:${tel}`)
+    }
+
+    sendMail = (mail) => {
+        const to = mail + ""
+        email(to)
+    }
+
+    renderButtonMail(email, cor) {
+        const em = email + ""
+        return <Button
+            icon={
+                <Icon
+                    name="envelope"
+                    size={20}
+                    color="white"
+                />
+            }
+            titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: cor, borderRadius: 5 }}
+            title="Enviar e-mail"
+            onPress={() => this.sendMail(em)}
+        />
+    }
+
+    renderButtonPhone(telefone, cor) {
+        const tel = telefone + "";
+        return <Button
+            icon={
+                <Icon
+                    name="phone"
+                    size={20}
+                    color="white"
+                />
+            }
+            titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: cor, borderRadius: 5 }}
+            title={tel}
+            onPress={(tel) => this.sendPhone(tel)}
+        />
+    }
+
     render() {
         if (this.state.isLoading) {
             return (
@@ -51,12 +97,14 @@ class ONGDetail extends React.Component {
             <View>
                 <HeaderMenu text={titulo} color={cor} />
                 <Card title={nome}
-                    titleStyle={{ backgroundColor: cor, color: '#FFFFFF' }}
-                    containerStyle={{ backgroundColor: cor }}>
-                    <Text>CNPJ: {cnpj}</Text>
-                    <Text>Email: {email}</Text>
-                    <Text>Telefone: {telefone}</Text>
-                    <Text>Campanha: {texto}</Text>
+                    titleStyle={{ backgroundColor: '#4876FF', color: '#FFF', fontSize: 30 }}
+                    containerStyle={{ backgroundColor: '#00008B' }}>
+                    <Text color={'white'}  >CNPJ: {cnpj}</Text>
+                    <View>
+                        {this.renderButtonMail(email, cor)}
+                        {this.renderButtonPhone(telefone, cor)}
+                    </View>
+                    <Text color={'white'}>Campanha: {texto}</Text>
                 </Card>
             </View>
         );

@@ -59,6 +59,7 @@ export const ContainerRegister = styled(Loading)`
 `;
 
 export const Text = styled.Text`
+    color: ${props => `${props.color}`}
     font-size: 15px; 
     text-align: center;
     padding: 10px
