@@ -70,7 +70,7 @@ class Ad extends React.Component {
         return <Button
             icon={
                 <Icon
-                    name="user"
+                    name="check"
                     size={15}
                     color="white"
                 />
@@ -92,6 +92,7 @@ class Ad extends React.Component {
                 <Drop>
                     <Dropdown
                         itemTextStyle={{ textAlign: "center" }}
+                        dropdownPosition={0}
                         label='Tipo de Campanha'
                         baseColor='#6A5ACD'
                         value={this.state.value}

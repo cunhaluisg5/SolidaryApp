@@ -37,16 +37,14 @@ class ONGDetail extends React.Component {
 
     sendPhone = (phone) => {
         const tel = phone + ""
-        Linking.openURL(`tel:${tel}`)
+        Linking.openURL(`tel:${phone}`)
     }
 
     sendMail = (mail) => {
-        const to = mail + ""
-        email(to)
+        email(mail)
     }
 
     renderButtonMail(email, cor) {
-        const em = email + ""
         return <Button
             icon={
                 <Icon
@@ -58,7 +56,7 @@ class ONGDetail extends React.Component {
             titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{ backgroundColor: cor, borderRadius: 5, margin: 10 }}
             title="Enviar e-mail"
-            onPress={() => this.sendMail(em)}
+            onPress={() => this.sendMail(email)}
         />
     }
 
@@ -75,7 +73,7 @@ class ONGDetail extends React.Component {
             titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{ backgroundColor: cor, borderRadius: 5, margin: 10 }}
             title={tel}
-            onPress={(tel) => this.sendPhone(tel)}
+            onPress={(tel) => this.sendPhone(telefone)}
         />
     }
 
@@ -92,7 +90,7 @@ class ONGDetail extends React.Component {
         const { texto } = this.props.navigation.state.params.content
         const titulo = this.props.navigation.state.params.titulo
         const cor = this.props.navigation.state.params.cor
-
+        console.log("Email: ", email, " Telefone: ", telefone)
         return (
             <View>
                 <HeaderMenu text={titulo} color={cor} />
