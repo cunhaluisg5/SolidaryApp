@@ -53,9 +53,10 @@ class ContentPageDonation extends React.Component {
         if (contents.length === 0) {
         }
         const items = contents.map((content, index) =>
-            <ContentItem key={index} cor={cor} texto={content.texto} onPress={() => {
-                this.props.navigation.navigate('ONGDetail', { content, titulo, cor });
-            }}
+            <ContentItem style={{ color: "#FFF" }} key={index} cor={cor} texto={content.texto}
+                onPress={() => {
+                    this.props.navigation.navigate('ONGDetail', { content, titulo, cor });
+                }}
             />
         )
 

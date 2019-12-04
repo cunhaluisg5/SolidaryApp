@@ -56,7 +56,7 @@ class ONGDetail extends React.Component {
                 />
             }
             titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{ backgroundColor: cor, borderRadius: 5 }}
+            buttonStyle={{ backgroundColor: cor, borderRadius: 5, margin: 10 }}
             title="Enviar e-mail"
             onPress={() => this.sendMail(em)}
         />
@@ -73,7 +73,7 @@ class ONGDetail extends React.Component {
                 />
             }
             titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{ backgroundColor: cor, borderRadius: 5 }}
+            buttonStyle={{ backgroundColor: cor, borderRadius: 5, margin: 10 }}
             title={tel}
             onPress={(tel) => this.sendPhone(tel)}
         />
@@ -97,8 +97,8 @@ class ONGDetail extends React.Component {
             <View>
                 <HeaderMenu text={titulo} color={cor} />
                 <Card title={nome}
-                    titleStyle={{ backgroundColor: '#4876FF', color: '#FFF', fontSize: 30 }}
-                    containerStyle={{ backgroundColor: '#00008B' }}>
+                    titleStyle={{ backgroundColor: '#CFCFCF', color: '#FFF', fontSize: 30 }}
+                    containerStyle={{ backgroundColor: '#CFCFCF', borderColor: {cor} }}>
                     <Text color={'white'}  >CNPJ: {cnpj}</Text>
                     <View>
                         {this.renderButtonMail(email, cor)}
