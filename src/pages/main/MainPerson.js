@@ -11,17 +11,17 @@ class MainPerson extends React.Component {
 
     trySeachTimeDonation() {
         const { navigation } = this.props
-        navigation.navigate("ContentPageDonation", { nomeColecao: 'TimeDonation', titulo: 'Tempo', cor: '#44A3D9' })
+        navigation.navigate("ContentPageDonation", { nomeColecao: 'TimeDonation', titulo: 'Tempo', cor: '#66B3ED' })
     }
 
     trySeachBloodDonation() {
         const { navigation } = this.props
-        navigation.navigate("ContentPageDonation", { nomeColecao: 'BloodDonation', titulo: 'Sangue', cor: '#C82A2B' })
+        navigation.navigate("ContentPageDonation", { nomeColecao: 'BloodDonation', titulo: 'Sangue', cor: '#ED6667' })
     }
 
     trySeachClotheDonation() {
         const { navigation } = this.props
-        navigation.navigate("ContentPageDonation", { nomeColecao: 'ClotheDonation', titulo: 'Roupa', cor: '#F8781F' })
+        navigation.navigate("ContentPageDonation", { nomeColecao: 'ClotheDonation', titulo: 'Roupa', cor: '#ED9566' })
     }
 
     trySeachMoneyDonation() {
@@ -32,8 +32,8 @@ class MainPerson extends React.Component {
     renderButton0() {
         return <Button
             icon={<Icon name="clock-o" size={15} color="white" />}
-            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{ backgroundColor: '#44A3D9' }}
+            titleStyle={{ color: '#FFFFFF', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#66B3ED' }}
             title="Tempo"
             onPress={() => this.trySeachTimeDonation()} />
     }
@@ -41,8 +41,8 @@ class MainPerson extends React.Component {
     renderButton1() {
         return <Button
             icon={<Icon name="heart" size={15} color="white" />}
-            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{ backgroundColor: '#C82A2B' }}
+            titleStyle={{ color: '#FFFFFF', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#ED6667' }}
             title="Sangue"
             onPress={() => this.trySeachBloodDonation()} />
     }
@@ -50,8 +50,8 @@ class MainPerson extends React.Component {
     renderButton2() {
         return <Button
             icon={<Icon name="shirtsinbulk" size={15} color="white" />}
-            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
-            buttonStyle={{ backgroundColor: '#F8781F' }}
+            titleStyle={{ color: '#FFFFFF', marginLeft: 10, fontSize: 20 }}
+            buttonStyle={{ backgroundColor: '#ED9566' }}
             title="Roupa"
             onPress={() => this.trySeachClotheDonation()} />
     }
@@ -59,7 +59,7 @@ class MainPerson extends React.Component {
     renderButton3() {
         return <Button
             icon={<Icon name="money" size={15} color="white" />}
-            titleStyle={{ color: '#ffffff', marginLeft: 10, fontSize: 20 }}
+            titleStyle={{ color: '#FFFFFF', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{ backgroundColor: '#97BE3D' }}
             title="Dinheiro"
             onPress={() => this.trySeachMoneyDonation()} />

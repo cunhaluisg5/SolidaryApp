@@ -60,7 +60,7 @@ export const ContainerRegister = styled(Loading)`
 
 export const Text = styled.Text`
     color: ${props => `${props.color}`}
-    font-size: 15px; 
+    font-size: 18px; 
     text-align: center;
     padding: 10px
 `;
@@ -112,4 +112,16 @@ export const View = styled.View`
     padding-top: ${props => props.paddingTop || 0};
     margin-bottom: ${props => props.marginBottom || 0};
     margin-top: ${props => props.marginTop || 0};
+`;
+
+export const ContainerUpdate = styled(Container)`
+    justify-content: center;
+    align-Items: center;
+`;
+
+export const TextRecover = styled.Text`
+    color: #4B41CC;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 20px
 `;

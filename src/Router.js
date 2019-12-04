@@ -7,6 +7,7 @@ import RegisterONG from './pages/register/RegisterONG';
 import ContentPageDonation from './pages/donations/ContentPageDonation';
 import AdEdit from './pages/sub/AdEdit';
 import ONGDetail from './pages/donations/ONGDetail';
+import UpdatePassword from './pages/recover/UpdatePassword';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -34,17 +35,14 @@ const AppNavigator = createStackNavigator(
       screen: ContentPageDonation
     },
     'ONGDetail': {
-      screen: ONGDetail,
-      navigationOptions: {
-        title: "Detalhes"
-      }
+      screen: ONGDetail
     },
     'AdEdit': {
-      screen: AdEdit,
-      navigationOptions: {
-        title: "Edição"
-      }
-    }
+      screen: AdEdit
+    },
+    'UpdatePassword': {
+      screen: UpdatePassword
+    },
   },
   {
     defaultNavigationOptions: {

@@ -93,8 +93,8 @@ class ONGDetail extends React.Component {
             <View>
                 <HeaderMenu text={titulo} color={cor} />
                 <Card title={nome}
-                    titleStyle={{ backgroundColor: '#CFCFCF', color: '#FFF', fontSize: 30 }}
-                    containerStyle={{ backgroundColor: '#CFCFCF', borderColor: { cor } }}>
+                    titleStyle={{ backgroundColor: '#B0ACAC', color: '#FFF', fontSize: 30 }}
+                    containerStyle={{ backgroundColor: '#B0ACAC', borderColor: { cor } }}>
                     <Text color={'white'}  >CNPJ: {cnpj}</Text>
                     <View>
                         {this.renderButtonMail(email, cor)}

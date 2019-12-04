@@ -72,16 +72,16 @@ class MyAd extends React.Component {
     returnColor() {
         switch (this.state.value) {
             case 'Tempo':
-                return '#1E90FF';
+                return '#66B3ED';
                 break;
             case 'Sangue':
-                return '#CD0000';
+                return '#ED6667';
                 break;
             case 'Roupa':
-                return '#DAA520';
+                return '#ED9566';
                 break;
             case 'Dinheiro':
-                return '#2E8B57';
+                return '#97BE3D';
                 break;
         }
     }

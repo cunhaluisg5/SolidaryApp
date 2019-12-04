@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, ActivityIndicator, Alert } from 'react-native';
+import { Text, ActivityIndicator, Alert, TouchableHighlight } from 'react-native';
 import { Card } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import Firebase from '../database/firebase';
-import { Loading, Image, ContainerImage, TextInput, But, ContainerButton, Container } from '../styles/style'
+import { Loading, Image, ContainerImage, TextInput, But, ContainerButton, Container, 
+                                                TextRecover } from '../styles/style'
 
 class Index extends React.Component {
     constructor(props) {
@@ -108,6 +109,10 @@ class Index extends React.Component {
         navigation.navigate("Register")
     }
 
+    redirect = () =>{
+        this.props.navigation.navigate("UpdatePassword")
+    }
+
     render() {
         if (this.state.isLoading) {
             return (
@@ -133,6 +138,9 @@ class Index extends React.Component {
                         onChangeText={(value) => this.onChangePass(value)}
                     />
                 </Card>
+                <TouchableHighlight onPress={this.redirect}>
+                    <TextRecover> Esqueci minha senha </TextRecover>
+                </TouchableHighlight>
                 <ContainerButton>
                     <But paddingTop={10} marginBottom={10}>
                         {this.renderButtonEnter()}

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Header } from 'react-native-elements';
-import firebase from '../database/firebase';
+import Firebase from '../database/firebase';
 
-logout = () => {
-  firebase.auth().signOut().then(() => {
-    console.log("Saiu")
+logout = (props) => {
+  Firebase.auth().signOut().then(() => {
+    console.log("Saiu");
+    props.navigation.navigate("Index")
   }).catch(function (error) {
     console.log("Não saiu ", error)
   });
@@ -15,8 +16,8 @@ const HeaderMenu = (props) => {
 
   return (
     <Header
-      centerComponent={{ text: text, style: { color: '#fff', fontSize: 20 } }}
-      rightComponent={{ icon: 'power-settings-new', color: '#fff', onPress: () => this.logout() }}
+      centerComponent={{ text: text, style: { color: '#FFF', fontSize: 20 } }}
+      rightComponent={{ icon: 'power-settings-new', color: '#FFF', onPress: () => this.logout(props) }}
       containerStyle={{ backgroundColor: color }}
     />
   )
