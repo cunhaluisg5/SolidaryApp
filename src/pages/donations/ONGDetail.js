@@ -36,7 +36,6 @@ class ONGDetail extends React.Component {
     }
 
     sendPhone = (phone) => {
-        const tel = phone + ""
         Linking.openURL(`tel:${phone}`)
     }
 
@@ -61,7 +60,6 @@ class ONGDetail extends React.Component {
     }
 
     renderButtonPhone(telefone, cor) {
-        const tel = telefone + "";
         return <Button
             icon={
                 <Icon
@@ -72,8 +70,8 @@ class ONGDetail extends React.Component {
             }
             titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20 }}
             buttonStyle={{ backgroundColor: cor, borderRadius: 5, margin: 10 }}
-            title={tel}
-            onPress={(tel) => this.sendPhone(telefone)}
+            title={telefone}
+            onPress={() => this.sendPhone(telefone)}
         />
     }
 
@@ -90,13 +88,13 @@ class ONGDetail extends React.Component {
         const { texto } = this.props.navigation.state.params.content
         const titulo = this.props.navigation.state.params.titulo
         const cor = this.props.navigation.state.params.cor
-        console.log("Email: ", email, " Telefone: ", telefone)
+
         return (
             <View>
                 <HeaderMenu text={titulo} color={cor} />
                 <Card title={nome}
                     titleStyle={{ backgroundColor: '#CFCFCF', color: '#FFF', fontSize: 30 }}
-                    containerStyle={{ backgroundColor: '#CFCFCF', borderColor: {cor} }}>
+                    containerStyle={{ backgroundColor: '#CFCFCF', borderColor: { cor } }}>
                     <Text color={'white'}  >CNPJ: {cnpj}</Text>
                     <View>
                         {this.renderButtonMail(email, cor)}
