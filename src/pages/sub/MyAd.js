@@ -108,7 +108,7 @@ class MyAd extends React.Component {
         )
         return (
             <View>
-                <HeaderMenu text='Campanhas' color='#3D6DCC' />
+                <HeaderMenu text='Campanhas' color='#3D6DCC' navigation={this.props} />
                 <Drop>
                     <Dropdown
                         itemTextStyle={{textAlign: "center"}}

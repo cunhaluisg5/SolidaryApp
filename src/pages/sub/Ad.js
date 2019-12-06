@@ -88,7 +88,7 @@ class Ad extends React.Component {
     renderRegister() {
         return (
             <View>
-                <HeaderMenu text='Publicar' color='#3D6DCC' />
+                <HeaderMenu text='Publicar' color='#3D6DCC' navigation={this.props} />
                 <Drop>
                     <Dropdown
                         itemTextStyle={{ textAlign: "center" }}

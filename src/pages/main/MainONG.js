@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const AppTabNavigatorONG = createBottomTabNavigator(
   {
     'Campanhas': {
-      screen: MyAd,
+      screen: (props) => <MyAd {...props}/>,
       navigationOptions: {
         tabBarOptions: {
           activeTintColor: "#00008B",
@@ -26,7 +26,7 @@ const AppTabNavigatorONG = createBottomTabNavigator(
       },
     },
     'Publicar': {
-      screen: Ad,
+      screen: (props) => <Ad {...props}/>,
       navigationOptions: {
         tabBarOptions: {
           activeTintColor: "#00008B",

@@ -68,7 +68,7 @@ class MainPerson extends React.Component {
     render() {
         return (
             <View>
-                <HeaderMenu text='Doar' color='#3D6DCC' />
+                <HeaderMenu text='Doar' color='#3D6DCC' navigation={this.props} />
                 <View flexDirection='column' display='flex' marginTop='40px'>
                     <View paddingLeft='20px' paddingRight='20px' paddingTop='5px' marginBottom='10px'>
                         {this.renderButton0()}

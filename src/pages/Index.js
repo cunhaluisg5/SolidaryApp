@@ -39,6 +39,7 @@ class Index extends React.Component {
             } else {
                 navigation.navigate("MainPerson");
             }
+            this.cleanValues();
         } else {
             console.log("Usuário não está logado")
         }
@@ -111,6 +112,15 @@ class Index extends React.Component {
 
     redirect = () =>{
         this.props.navigation.navigate("UpdatePassword")
+    }
+
+    cleanValues(){
+        this.setState({
+            mail: '',
+            pass: '',
+            message: '',
+            isLoading: false
+        })
     }
 
     render() {
