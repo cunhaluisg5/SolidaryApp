@@ -4,8 +4,9 @@ import { isCnpj } from "validator-brazil";
 import { TextInputMask } from 'react-native-masked-text'
 import firebase from '../../database/firebase'
 import { Button, Card } from 'react-native-elements';
+import HeaderMenuInit from '../../components/HeaderMenuInit';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { But, TextRegister, TextInputRegister, ContainerText, ContainerScroll } from '../../styles/style'
+import { But, TextInputRegister, ContainerScroll } from '../../styles/style'
 
 class RegisterONG extends React.Component {
     constructor(props) {
@@ -91,7 +92,7 @@ class RegisterONG extends React.Component {
 
     renderRegisterONG() {
         return (
-            <Card title="Cadastro de ONG">
+            <Card title="Preencha os dados abaixo para efetuar o cadastro">
                 <Text>CNPJ: </Text>
                 <TextInputMask style={{
                     borderColor: 'black', borderBottomWidth: 1, fontSize: 20,
@@ -140,9 +141,7 @@ class RegisterONG extends React.Component {
     render() {
         return (
             <ContainerScroll>
-                <ContainerText>
-                    <TextRegister>Preencha os dados abaixo para efetuar o cadastro</TextRegister>
-                </ContainerText>
+                <HeaderMenuInit text="Cadastro de ONG" navigation={this.props} />
 
                 <View>
                     {this.renderScreen()}

@@ -70,12 +70,6 @@ export const ContainerReg = styled(Loading)`
     background: #fff;
 `;
 
-export const TextRegister = styled.Text`
-    font-size: 15px; 
-    margin-left: 10px;
-    margin-right: 10px
-`;
-
 export const TextInputRegister = styled.TextInput`
     border-color: black;
     border-bottom-width: 1px;
@@ -86,10 +80,6 @@ export const TextInputRegister = styled.TextInput`
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px
-`;
-
-export const ContainerText = styled(Loading)`
-    margin-top: 50px
 `;
 
 export const Drop = styled.View`
@@ -112,11 +102,6 @@ export const View = styled.View`
     padding-top: ${props => props.paddingTop || 0};
     margin-bottom: ${props => props.marginBottom || 0};
     margin-top: ${props => props.marginTop || 0};
-`;
-
-export const ContainerUpdate = styled(Container)`
-    justify-content: center;
-    align-Items: center;
 `;
 
 export const TextRecover = styled.Text`

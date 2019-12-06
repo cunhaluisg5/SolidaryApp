@@ -1,10 +1,11 @@
 import React from 'react';
-import { TextInput, Text, Alert } from 'react-native';
+import { View, TextInput, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card, Button } from 'react-native-elements';
+import HeaderMenuInit from '../../components/HeaderMenuInit';
 import Firebase from '../../database/firebase';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import { ContainerUpdate, ContainerButton, But } from '../../styles/style';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { ContainerButton, But } from '../../styles/style';
 
 class UpdatePassword extends React.Component {
 
@@ -38,7 +39,7 @@ class UpdatePassword extends React.Component {
                     color="white"
                 />
             }
-            titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20, fontSize: 16 }}
+            titleStyle={{ color: 'white', marginLeft: 10, fontSize: 20, fontSize: 20 }}
             buttonStyle={{ backgroundColor: '#00BFFF' }}
             title="Enviar"
             onPress={() => this.tryRecover()}
@@ -48,22 +49,23 @@ class UpdatePassword extends React.Component {
     render() {
 
         return (
-            <ContainerUpdate>
-                <Card containerStyle={{width: wp('80%')}}
-                    title="Recuperação de Senha"
-                    titleStyle={{backgroundColor: "#ADD8E6", fontSize: 16}}>
-                    <Text>Informe o email cadastrado.</Text>
-                    <TextInput
-                        placeholder="user@email.com"
-                        onChangeText={(value) => this.setState({ mail: value })}
-                    />
-                </Card>
-                <ContainerButton>
-                    <But paddingTop={10} marginBottom={10}>
-                        {this.renderButton()}
-                    </But>
-                </ContainerButton>
-            </ContainerUpdate>
+            <View>
+                <HeaderMenuInit text="Recuperação de Senha" navigation={this.props} />
+                    <Card containerStyle={{ width: wp('90%') }}
+                        title="Informe o email cadastrado"
+                        titleStyle={{ fontSize: 18 }}>
+                        <TextInput
+                            style={{fontSize: 18}}
+                            placeholder="user@email.com"
+                            onChangeText={(value) => this.setState({ mail: value })}
+                        />
+                    </Card>
+                    <ContainerButton>
+                        <But paddingTop={10} marginBottom={10}>
+                            {this.renderButton()}
+                        </But>
+                    </ContainerButton>
+            </View>
         );
     }
 }

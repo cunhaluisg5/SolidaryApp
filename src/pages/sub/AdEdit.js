@@ -123,7 +123,7 @@ class AdEdit extends React.Component {
         const cor = this.props.navigation.state.params.cor
         return (
             <ScrollView>
-                <HeaderMenu text="Campanha" color={cor} navigation={this.props} />
+                <HeaderMenu text="Campanha" color={cor} navigation={this.props} back={true} />
                 <Card title="Anunciar"
                     titleStyle={{ backgroundColor: '#ADD8E6' }}
                     containerStyle={{ backgroundColor: '#F0F8FF' }}>

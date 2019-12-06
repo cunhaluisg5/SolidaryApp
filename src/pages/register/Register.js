@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card } from 'react-native-elements'
 import { Button } from 'react-native-elements';
-import { ContainerRegister, Text, ContainerReg, ContainerImage } from '../../styles/style';
+import HeaderMenuInit from '../../components/HeaderMenuInit';
+import { ContainerRegister, Text, ContainerReg } from '../../styles/style';
 
 class Register extends React.Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class Register extends React.Component {
     render() {
         return (
             <ContainerReg>
+                <HeaderMenuInit text="Cadastro" navigation={this.props} />
                 <ContainerRegister>
                     <Card image={require('../../images/user.png')}>
                         <Text>

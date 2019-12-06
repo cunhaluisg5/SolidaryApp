@@ -62,7 +62,7 @@ class ContentPageDonation extends React.Component {
 
         return (
             <ContainerScroll>
-                <HeaderMenu text={titulo} color={cor} navigation={this.props} />
+                <HeaderMenu text={titulo} color={cor} navigation={this.props} back={true} />
                 {items}
             </ContainerScroll>
         );
