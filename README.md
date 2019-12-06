@@ -7,13 +7,11 @@
 <br />
 
 <p align="center">
-  <a href="https://github.com/cunhaluisg5/SolidaryApp">
     <img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2001.png" width="18%">
-<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2002.png" width="18%">
-<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2003.png" width="18%">
-<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2004.png" width="18%">
-<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2005.png" width="18%">
-  </a>
+	<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2002.png" width="18%">
+	<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2003.png" width="18%">
+	<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2004.png" width="18%">
+	<img alt="SolidaryApp" src="https://raw.githubusercontent.com/cunhaluisg5/SolidaryApp/master/src/images/screen%2005.png" width="18%">
 </p>
 
 ## SolidaryApp
@@ -22,7 +20,7 @@ A ideia da aplicação é permitir que instituições divulguem campanhas de doa
 
 ## Requisitos
 
-Ter instalado [Node JS](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/lang/en/) (para execução de JavaScript), [JAVA](https://www.java.com/pt_BR/download/) (para utilização do Android Studio), [Android Studio](https://developer.android.com/studio) ou [Geny Motion](https://www.genymotion.com/) (para emular o Android) ou [Expo](https://expo.io/) (para executar no SmartPhone).
+Ter instalado [Node JS](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/lang/en/) (para execução de JavaScript), [JAVA](https://www.java.com/pt_BR/download/) (para utilização do Android Studio), [Android Studio](https://developer.android.com/studio) ou [Geny Motion](https://www.genymotion.com/) (para emular o Android) e [Expo](https://expo.io/) (para executar no SmartPhone).
 
 ## Projeto
 
@@ -38,9 +36,9 @@ Luís Gustavo da Cunha Cipriani e João Pedro Guedes Presto.
 
 ## Dependências Utilizadas
 
-- [x] [expo": "^34.0.1"](https://blog.expo.io/expo-sdk-34-is-now-available-4f7825239319)
-- [x] [firebase": "^7.2.3"](https://firebase.google.com/support/release-notes/js)
-- [x] [react": "16.8.3"](https://github.com/facebook/react/releases)
+- [x] [expo": "^34.0.1"](https://www.npmjs.com/package/expo?activeTab=versions)
+- [x] [firebase": "^7.2.3"](https://www.npmjs.com/package/firebase/v/7.2.3-0)
+- [x] [react": "16.8.3"](https://www.npmjs.com/package/react/v/16.8.3)
 - [x] [react-dom": "^16.8.6"](https://www.npmjs.com/package/react-dom/v/16.8.6)
 - [x] [react-native"](https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz)
 - [x] [react-native-elements": "^1.2.1"](https://www.npmjs.com/package/react-native-elements?activeTab=versions)
